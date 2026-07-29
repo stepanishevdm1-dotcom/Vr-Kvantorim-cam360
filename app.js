@@ -161,12 +161,6 @@ const variantLabelEn = {
   '\u041e\u0431\u044b\u0447\u043d\u0430\u044f': 'Normal',
 };
 
-const sidebarGroupLabelEn = {};
-
-const variantLabelEn = {
-  '\u041e\u0431\u044b\u0447\u043d\u0430\u044f': 'Normal',
-};
-
 const sidebarGroupLabelEn = {
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Floor 3',
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442\u044b': 'Rooms',
@@ -332,9 +326,9 @@ const euler = new THREE.Euler(0, 0, 0, 'YXZ');
 const hotspotVec = new THREE.Vector3(0, 0, -1);
 
 // Главный вход грузится сразу
-const mainFileUrl = encodeURI(scenes.main_entrance.variants[0].image);
+const mainFileUrl = scenes.main_entrance.variants[0].image;
 const mainLoader = new THREE.TextureLoader();
-mainLoader.load(mainFileUrl, tex => {
+mainLoader.load(encodeURI(mainFileUrl), tex => {
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = THREE.RepeatWrapping;
   tex.needsUpdate = true;
@@ -390,27 +384,97 @@ function preloadAll() {
     return;
   }
 
-  const mainFile = scenes.main_entrance.variants[0].image;
-  let loaded = 0;
+  preloadList.innerHTML = '';
+  let loadedBytes = 0;
+  let loadedCount = 0;
+  const startTime = performance.now();
+
+  function onItemProgress(itemEl, loaded, total) {
+    const pct = total > 0 ? Math.round(loaded / total * 100) : 0;
+    itemEl.querySelector('.progress').textContent = humanSize(loaded) + ' / ' + humanSize(total);
+    if (pct === 100) itemEl.querySelector('.progress').textContent = '\u2713 ' + humanSize(total);
+  }
+
+  function onAllProgress() {
+    const elapsed = (performance.now() - startTime) / 1000;
+    updateSpeed(loadedBytes, elapsed);
+    loadingStatus.textContent = t('loading') + loadedCount + '/' + total;
+  }
 
   for (const img of images) {
-    if (img.file === mainFile) {
-      loaded++;
-      if (loaded === total) {
+    if (imageCache[img.file]) {
+      loadedCount++;
+      onAllProgress();
+      if (loadedCount === total) {
         loadingEl.classList.add('hidden');
         if (!viewerStarted) startViewer();
       }
       continue;
     }
 
-    const loader = new THREE.TextureLoader();
-    loader.load(encodeURI(img.file), () => {
-      loaded++;
-      if (loaded === total) {
-        loadingEl.classList.add('hidden');
-        if (!viewerStarted) startViewer();
-      }
-    });
+    const itemEl = document.createElement('div');
+    itemEl.className = 'preload-item';
+    itemEl.innerHTML = '<span class="name">' + img.label + '</span><span class="progress">...</span>';
+    if (img.variant) { itemEl.classList.add('variant'); itemEl.querySelector('.name').textContent = '  \u21B3 ' + img.variant; }
+    preloadList.appendChild(itemEl);
+
+    const url = encodeURI(img.file);
+
+    (function doLoad(itemEl, url) {
+      fetch(url).then(r => {
+        const total = parseInt(r.headers.get('Content-Length') || '0');
+        const reader = r.body.getReader();
+        const chunks = [];
+        let itemLoaded = 0;
+
+        function pump() {
+          return reader.read().then(({ done, value }) => {
+            if (done) {
+              const blob = new Blob(chunks);
+              const blobUrl = URL.createObjectURL(blob);
+              const loader = new THREE.TextureLoader();
+              loader.load(blobUrl, tex => {
+                URL.revokeObjectURL(blobUrl);
+                tex.colorSpace = THREE.SRGBColorSpace;
+                tex.wrapS = THREE.RepeatWrapping;
+                tex.needsUpdate = true;
+                imageCache[img.file] = tex;
+                onItemProgress(itemEl, total, total);
+                loadedCount++;
+                onAllProgress();
+                if (loadedCount === total) {
+                  loadingEl.classList.add('hidden');
+                  if (!viewerStarted) startViewer();
+                }
+              });
+              return;
+            }
+            chunks.push(value);
+            loadedBytes += value.length;
+            itemLoaded += value.length;
+            onItemProgress(itemEl, itemLoaded, total);
+            onAllProgress();
+            return pump();
+          });
+        }
+        return pump();
+      }).catch(() => {
+        const loader = new THREE.TextureLoader();
+        loader.load(url, tex => {
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.wrapS = THREE.RepeatWrapping;
+          tex.needsUpdate = true;
+          imageCache[img.file] = tex;
+          onItemProgress(itemEl, 1, 1);
+          loadedCount++;
+          onAllProgress();
+          if (loadedCount === total) {
+            loadingEl.classList.add('hidden');
+            if (!viewerStarted) startViewer();
+          }
+        });
+      });
+    })(itemEl, url);
   }
 }
 
