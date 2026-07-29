@@ -43,14 +43,23 @@ const scenes = {
       { label: 'Обычная', image: 'Крыльцо.jpg' }
     ],
     hotspots: [
-      { yaw: 4.607, pitch: -0.005, label: 'Главный вход', target: 'main_entrance',
-        returnYaw: 1.465, returnPitch: -0.005 }
+      { yaw: 4.451, pitch: -0.12, label: 'Главный вход', target: 'main_entrance' },
+      { yaw: 4.451, pitch: -0.12, label: 'Охрана', target: 'security' }
+    ]
+  },
+  'security': {
+    name: 'Охрана',
+    variants: [
+      { label: 'Обычная', image: 'Охрана.jpg' }
+    ],
+    hotspots: [
+      { yaw: 1.309, pitch: -0.12, label: 'Крыльцо', target: 'porch' }
     ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -167,11 +176,13 @@ const translations = {
 const sceneNamesEn = {
   'main_entrance': 'Main Entrance',
   'porch': 'Porch',
+  'security': 'Security',
 };
 
 const hotspotLabelEn = {
   '\u041a\u0440\u044b\u043b\u044c\u0446\u043e': 'Porch',
   '\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0432\u0445\u043e\u0434': 'Main Entrance',
+  '\u041e\u0445\u0440\u0430\u043d\u0430': 'Security',
 };
 
 const variantLabelEn = {
