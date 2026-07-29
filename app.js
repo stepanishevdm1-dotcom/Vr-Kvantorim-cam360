@@ -157,12 +157,22 @@ const scenes = {
       { label: 'Обычная', image: '3 этаж 3.jpg' }
     ],
     hotspots: [
+      { yaw: 5.292, pitch: -0.1571, label: 'Третий этаж 2', target: 'floor_3_2' },
+      { yaw: 2.082, pitch: -0.01222, label: 'Третий этаж 4', target: 'floor_3_4' }
+    ]
+  },
+  'floor_3_4': {
+    name: 'Третий этаж 4',
+    variants: [
+      { label: 'Обычная', image: '3 этаж 4.jpg' }
+    ],
+    hotspots: [
     ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3', 'floor_3_4'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -290,6 +300,7 @@ const sceneNamesEn = {
   'floor_3_1': '3rd Floor Room 1',
   'floor_3_2': '3rd Floor Room 2',
   'floor_3_3': '3rd Floor Room 3',
+  'floor_3_4': '3rd Floor Room 4',
 };
 
 const hotspotLabelEn = {
@@ -305,6 +316,7 @@ const hotspotLabelEn = {
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 1': 'Floor 3 Room 1',
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 2': 'Floor 3 Room 2',
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 3': 'Floor 3 Room 3',
+  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 4': 'Floor 3 Room 4',
   '\u0420\u0430\u0437\u0432\u0438\u043b\u043a\u0430 \u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Fork Floor 3',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 2 \u044d\u0442\u0430\u0436': 'Going up to Floor 2',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 \u0442\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Going up to Floor 3',
