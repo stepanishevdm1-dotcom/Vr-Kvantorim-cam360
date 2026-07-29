@@ -117,13 +117,23 @@ const scenes = {
       { label: 'Обычная', image: '3 этаж.jpg' }
     ],
     hotspots: [
-      { yaw: 0.501, pitch: -0.251, label: 'Подъем', target: 'climb_3f' }
+      { yaw: 5.203, pitch: -0.286, label: 'Подъем', target: 'climb_3f' },
+      { yaw: 2.808, pitch: -0.112, label: 'Развилка 3 этаж', target: 'fork_3' }
+    ]
+  },
+  'fork_3': {
+    name: 'Развилка 3 этаж',
+    variants: [
+      { label: 'Обычная', image: 'Развилка 3 этаж.jpg' }
+    ],
+    hotspots: [
+      { yaw: 2.808, pitch: -0.112, label: '3 этаж', target: 'floor_3' }
     ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3', 'fork_3'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -247,6 +257,7 @@ const sceneNamesEn = {
   'climb_2f': 'Climb Floor 2',
   'climb_3f': 'Climb Floor 3',
   'floor_3': 'Floor 3',
+  'fork_3': 'Fork Floor 3',
 };
 
 const hotspotLabelEn = {
@@ -259,6 +270,7 @@ const hotspotLabelEn = {
   '\u041f\u043e\u0434\u044a\u0435\u043c 2 \u044d\u0442\u0430\u0436': 'Climb Floor 2',
   '\u041f\u043e\u0434\u044a\u0435\u043c 3 \u044d\u0442\u0430\u0436': 'Climb Floor 3',
   '3 \u044d\u0442\u0430\u0436': 'Floor 3',
+  '\u0420\u0430\u0437\u0432\u0438\u043b\u043a\u0430 3 \u044d\u0442\u0430\u0436': 'Fork Floor 3',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 2 \u044d\u0442\u0430\u0436': 'Going up to Floor 2',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 3 \u044d\u0442\u0430\u0436': 'Going up to Floor 3',
   '\u0421\u043f\u0443\u0441\u043a\u0430\u0435\u043c\u0441\u044f \u043d\u0430 1 \u044d\u0442\u0430\u0436': 'Going down to Floor 1',
