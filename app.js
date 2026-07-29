@@ -54,7 +54,7 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 1.211, pitch: -0.11, label: 'Крыльцо', target: 'porch' },
-      { yaw: -0.26, pitch: -0.11, label: 'Около лестницы', target: 'near_stairs' }
+      { yaw: 4.646, pitch: -0.0855, label: 'Около лестницы', target: 'near_stairs' }
     ]
   },
   'near_stairs': {
@@ -63,13 +63,23 @@ const scenes = {
       { label: 'Обычная', image: 'Около лестницы.jpg' }
     ],
     hotspots: [
-      { yaw: -0.26, pitch: -0.11, label: 'Охрана', target: 'security' }
+      { yaw: 4.646, pitch: -0.0855, label: 'Охрана', target: 'security' },
+      { yaw: 1.490, pitch: -0.168, label: 'Подъем', target: 'climb' }
+    ]
+  },
+  'climb': {
+    name: 'Подъем',
+    variants: [
+      { label: 'Обычная', image: 'Подъем.jpg' }
+    ],
+    hotspots: [
+      { yaw: 1.490, pitch: -0.168, label: 'Около лестницы', target: 'near_stairs' }
     ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -188,6 +198,7 @@ const sceneNamesEn = {
   'porch': 'Porch',
   'security': 'Security',
   'near_stairs': 'Near Stairs',
+  'climb': 'Climb',
 };
 
 const hotspotLabelEn = {
@@ -195,6 +206,7 @@ const hotspotLabelEn = {
   '\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0432\u0445\u043e\u0434': 'Main Entrance',
   '\u041e\u0445\u0440\u0430\u043d\u0430': 'Security',
   '\u041e\u043a\u043e\u043b\u043e \u043b\u0435\u0441\u0442\u043d\u0438\u0446\u044b': 'Near Stairs',
+  '\u041f\u043e\u0434\u044a\u0435\u043c': 'Climb',
 };
 
 const variantLabelEn = {
