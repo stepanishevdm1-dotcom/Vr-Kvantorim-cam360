@@ -96,48 +96,48 @@ const scenes = {
     hotspots: [
       { yaw: 1.126, pitch: -0.546, label: 'Подъем 1 этаж', target: 'climb_1f',
         descend: true, climbText: 'Спускаемся на 1 этаж' },
-      { yaw: 0.747, pitch: 0.185, label: 'Подъем 3 этаж', target: 'climb_3f',
-        stairs: true, climbText: 'Поднимаемся на 3 этаж' }
+      { yaw: 0.747, pitch: 0.185, label: 'Подъем Третий этаж', target: 'climb_3f',
+        stairs: true, climbText: 'Поднимаемся на третий этаж' }
     ]
   },
   'climb_3f': {
-    name: 'Подъем 3 этаж',
+    name: 'Подъем Третий этаж',
     variants: [
       { label: 'Обычная', image: '3 этаж подъем.jpg' }
     ],
     hotspots: [
       { yaw: 1.941, pitch: -0.511, label: 'Подъем 2 этаж', target: 'climb_2f',
         descend: true, climbText: 'Спускаемся на 2 этаж' },
-      { yaw: 0.501, pitch: -0.251, label: '3 этаж', target: 'floor_3' }
+      { yaw: 0.501, pitch: -0.251, label: 'Третий этаж', target: 'floor_3' }
     ]
   },
   'floor_3': {
-    name: '3 этаж',
+    name: 'Третий этаж',
     variants: [
       { label: 'Обычная', image: '3 этаж.jpg' }
     ],
     hotspots: [
       { yaw: 5.203, pitch: -0.286, label: 'Подъем', target: 'climb_3f' },
-      { yaw: 2.808, pitch: -0.112, label: 'Развилка 3 этаж', target: 'fork_3' }
+      { yaw: 2.808, pitch: -0.112, label: 'Развилка Третий этаж', target: 'fork_3' }
     ]
   },
   'fork_3': {
-    name: 'Развилка 3 этаж',
+    name: 'Развилка Третий этаж',
     variants: [
       { label: 'Обычная', image: 'Развилка 3 этаж.jpg' }
     ],
     hotspots: [
-      { yaw: 3.335, pitch: -0.082, label: '3 этаж', target: 'floor_3' },
-      { yaw: 0.176, pitch: -0.063, label: '3 этаж 1', target: 'floor_3_1' }
+      { yaw: 3.335, pitch: -0.082, label: 'Третий этаж', target: 'floor_3' },
+      { yaw: 0.176, pitch: -0.063, label: 'Третий этаж 1', target: 'floor_3_1' }
     ]
   },
   'floor_3_1': {
-    name: '3 этаж 1',
+    name: 'Третий этаж 1',
     variants: [
       { label: 'Обычная', image: '3 этаж 1.jpg' }
     ],
     hotspots: [
-      { yaw: 0.176, pitch: -0.063, label: 'Развилка 3 этаж', target: 'fork_3' }
+      { yaw: 0.176, pitch: -0.063, label: 'Развилка Третий этаж', target: 'fork_3' }
     ]
   }
 };
@@ -265,10 +265,10 @@ const sceneNamesEn = {
   'climb': 'Climb',
   'climb_1f': 'Climb Floor 1',
   'climb_2f': 'Climb Floor 2',
-  'climb_3f': 'Climb Floor 3',
-  'floor_3': 'Floor 3',
-  'fork_3': 'Fork Floor 3',
-  'floor_3_1': 'Floor 3 Room 1',
+  'climb_3f': 'Climb 3rd Floor',
+  'floor_3': '3rd Floor',
+  'fork_3': 'Fork 3rd Floor',
+  'floor_3_1': '3rd Floor Room 1',
 };
 
 const hotspotLabelEn = {
@@ -279,10 +279,10 @@ const hotspotLabelEn = {
   '\u041f\u043e\u0434\u044a\u0435\u043c': 'Climb',
   '\u041f\u043e\u0434\u044a\u0435\u043c 1 \u044d\u0442\u0430\u0436': 'Climb Floor 1',
   '\u041f\u043e\u0434\u044a\u0435\u043c 2 \u044d\u0442\u0430\u0436': 'Climb Floor 2',
-  '\u041f\u043e\u0434\u044a\u0435\u043c 3 \u044d\u0442\u0430\u0436': 'Climb Floor 3',
-  '3 \u044d\u0442\u0430\u0436': 'Floor 3',
-  '3 \u044d\u0442\u0430\u0436 1': 'Floor 3 Room 1',
-  '\u0420\u0430\u0437\u0432\u0438\u043b\u043a\u0430 3 \u044d\u0442\u0430\u0436': 'Fork Floor 3',
+  '\u041f\u043e\u0434\u044a\u0435\u043c \u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Climb 3rd Floor',
+  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Floor 3',
+  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 1': 'Floor 3 Room 1',
+  '\u0420\u0430\u0437\u0432\u0438\u043b\u043a\u0430 \u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Fork Floor 3',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 2 \u044d\u0442\u0430\u0436': 'Going up to Floor 2',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 3 \u044d\u0442\u0430\u0436': 'Going up to Floor 3',
   '\u0421\u043f\u0443\u0441\u043a\u0430\u0435\u043c\u0441\u044f \u043d\u0430 1 \u044d\u0442\u0430\u0436': 'Going down to Floor 1',
