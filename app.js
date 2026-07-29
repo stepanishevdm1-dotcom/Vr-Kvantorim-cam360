@@ -134,7 +134,7 @@ const scenes = {
   'floor_3_1': {
     name: 'Третий этаж 1',
     variants: [
-      { label: 'Обычная', image: '3 этаж 1.jpg' }
+      { label: 'Обычная', image: '3 этажо 1.jpg' }
     ],
     hotspots: [
       { yaw: 0.176, pitch: -0.063, label: 'Развилка Третий этаж', target: 'fork_3' }
