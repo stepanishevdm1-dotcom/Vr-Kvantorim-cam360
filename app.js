@@ -32,427 +32,12 @@ const scenes = {
     variants: [
       { label: 'Обычная', image: 'Главный вход.jpg' }
     ],
-    hotspots: [
-      { yaw: 2.836, pitch: 0.033, label: 'Охрана', target: 'security',
-        returnYaw: 5.211, returnPitch: 0 }
-    ]
-  },
-  'security': {
-    name: 'Охрана',
-    variants: [
-      { label: 'Обычная', image: 'у охраны 1 .jpg' }
-    ],
-    hotspots: [
-      { yaw: 2.069, pitch: -0.093, label: 'Главный вход', target: 'main_entrance',
-        returnYaw: 5.978, returnPitch: 0 },
-      { yaw: 0.106, pitch: -0.042, label: 'Третий этаж', target: 'floor3',
-        returnYaw: 4.015, returnPitch: 0, stairs: true, climbText: 'Поднимаемся на 3 этаж' }
-    ]
-  },
-  'floor3': {
-    name: 'Третий этаж',
-    variants: [
-      { label: 'Обычная', image: '3 этаж.jpg' }
-    ],
-    hotspots: [
-      { yaw: 0.873, pitch: -0.169, label: 'Охрана', target: 'security',
-        returnYaw: 3.248, returnPitch: 0, descend: true, climbText: 'Спускаемся на 1 этаж' },
-      { yaw: 4.684, pitch: -0.124, label: 'Третий этаж 1', target: 'floor3_1',
-        returnYaw: 1.604, returnPitch: 0 }
-    ]
-  },
-  'floor3_1': {
-    name: 'Третий этаж 1',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 1.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.745, pitch: -0.084, label: 'Третий этаж', target: 'floor3',
-        returnYaw: 1.543, returnPitch: 0 },
-      { yaw: 1.429, pitch: -0.065, label: 'Третий этаж 2', target: 'floor3_2',
-        returnYaw: 4.744, returnPitch: 0 },
-      { yaw: 5.356, pitch: -0.108, label: 'Третий этаж 17', target: 'floor3_17',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'floor3_2': {
-    name: 'Третий этаж 2',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 2.jpg' }
-    ],
-    hotspots: [
-      { yaw: 1.602, pitch: -0.045, label: 'Третий этаж 1', target: 'floor3_1',
-        returnYaw: 4.571, returnPitch: 0 },
-      { yaw: 4.660, pitch: -0.080, label: 'Третий этаж 3', target: 'floor3_3',
-        returnYaw: 6.234, returnPitch: 0 }
-    ]
-  },
-  'floor3_3': {
-    name: 'Третий этаж 3',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 3.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.092, pitch: -0.056, label: 'Третий этаж 2', target: 'floor3_2',
-        returnYaw: 1.519, returnPitch: 0 },
-      { yaw: 6.262, pitch: -0.075, label: 'Третий этаж 4', target: 'floor3_4',
-        returnYaw: 4.799, returnPitch: 0 }
-    ]
-  },
-  'floor3_4': {
-    name: 'Третий этаж 4',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 4.jpg' }
-    ],
-    hotspots: [
-      { yaw: 1.657, pitch: -0.094, label: 'Третий этаж 3', target: 'floor3_3',
-        returnYaw: 3.121, returnPitch: 0 },
-      { yaw: 3.257, pitch: -0.070, label: 'Третий этаж 5', target: 'floor3_5',
-        returnYaw: 0.030, returnPitch: 0 }
-    ]
-  },
-  'floor3_5': {
-    name: 'Третий этаж 5',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 5.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.171, pitch: -0.065, label: 'Третий этаж 4', target: 'floor3_4',
-        returnYaw: 0.116, returnPitch: 0 },
-      { yaw: 6.248, pitch: -0.105, label: 'Третий этаж 6', target: 'floor3_6',
-        returnYaw: 6.238, returnPitch: 0 }
-    ]
-  },
-  'floor3_6': {
-    name: 'Третий этаж 6',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 6.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.096, pitch: -0.059, label: 'Третий этаж 5', target: 'floor3_5',
-        returnYaw: 3.107, returnPitch: 0 },
-      { yaw: 6.282, pitch: -0.056, label: 'Третий этаж 7', target: 'floor3_7',
-        returnYaw: 6.304, returnPitch: 0 },
-      { yaw: 4.632, pitch: -0.150, label: 'Кабинет Промышленный дизайн', target: 'industrial_design',
-        returnYaw: 3.110, returnPitch: 0 }
-    ]
-  },
-  'floor3_7': {
-    name: 'Третий этаж 7',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 7.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.162, pitch: -0.040, label: 'Третий этаж 6', target: 'floor3_6',
-        returnYaw: 6.304, returnPitch: 0 },
-      { yaw: 4.812, pitch: -0.126, label: 'Кабинет Робоквантум', target: 'robo',
-        returnYaw: 5.385, returnPitch: 0 },
-      { yaw: 6.202, pitch: -0.091, label: 'Третий этаж 8', target: 'floor3_8',
-        returnYaw: 3.062, returnPitch: 0 }
-    ]
-  },
-  'industrial_design': {
-    name: 'Кабинет Промышленный дизайн',
-    variants: [
-      { label: 'Обычная', image: 'Промышленный дизайн.jpg' }
-    ],
-    hotspots: [
-      { yaw: 6.251, pitch: -0.035, label: 'Третий этаж 6', target: 'floor3_6',
-        returnYaw: 1.491, returnPitch: 0 },
-      { yaw: 4.762, pitch: -0.030, label: 'Кабинет Промышленный дизайн 2', target: 'industrial_design_2',
-        returnYaw: 3.142, returnPitch: 0 }
-    ]
-  },
-  'industrial_design_2': {
-    name: 'Кабинет Промышленный дизайн 2',
-    variants: [
-      { label: 'Обычная', image: 'Промышленный дизайн 2.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.732, pitch: -0.059, label: 'Промышленный дизайн', target: 'industrial_design',
-        returnYaw: 1.621, returnPitch: 0 },
-      { yaw: 4.018, pitch: -0.101, label: 'Третий этаж 6', target: 'floor3_6',
-        returnYaw: 3.142, returnPitch: 0 }
-    ]
-  },
-  'robo': {
-    name: 'Кабинет Робоквантум',
-    variants: [
-      { label: 'Обычная', image: 'Robo.jpg' }
-    ],
-    hotspots: [
-      { yaw: 2.243, pitch: -0.059, label: 'Третий этаж 7', target: 'floor3_7',
-        returnYaw: 1.671, returnPitch: 0 },
-      { yaw: 0.708, pitch: -0.106, label: 'Третий этаж 8', target: 'floor3_8',
-        returnYaw: 1.432, returnPitch: 0 }
-    ]
-  },
-  'floor3_8': {
-    name: 'Третий этаж 8',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 8.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.206, pitch: -0.075, label: 'Третий этаж 7', target: 'floor3_7',
-        returnYaw: 3.062, returnPitch: 0 },
-      { yaw: 4.573, pitch: -0.099, label: 'Кабинет Робоквантум', target: 'robo',
-        returnYaw: 3.850, returnPitch: 0 },
-      { yaw: 0.019, pitch: -0.056, label: 'Третий этаж 9', target: 'floor3_9',
-        returnYaw: 6.278, returnPitch: 0 }
-    ]
-  },
-  'floor3_9': {
-    name: 'Третий этаж 9',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 9.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.136, pitch: -0.075, label: 'Третий этаж 8', target: 'floor3_8',
-        returnYaw: 3.161, returnPitch: 0 },
-      { yaw: 6.257, pitch: -0.040, label: 'Третий этаж 10', target: 'floor3_10',
-        returnYaw: 1.628, returnPitch: 0 },
-      { yaw: 4.732, pitch: -0.145, label: 'Кабинет 304', target: 'kabinet_304',
-        returnYaw: 6.168, returnPitch: 0 }
-    ]
-  },
-  'floor3_10': {
-    name: 'Третий этаж 10',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 10.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.768, pitch: -0.084, label: 'Третий этаж 9', target: 'floor3_9',
-        returnYaw: 3.099, returnPitch: 0 },
-      { yaw: 0.096, pitch: -0.084, label: 'Третий этаж 11', target: 'floor3_11',
-        returnYaw: 6.302, returnPitch: 0 }
-    ]
-  },
-  'floor3_11': {
-    name: 'Третий этаж 11',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 11.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.161, pitch: -0.070, label: 'Третий этаж 10', target: 'floor3_10',
-        returnYaw: 3.238, returnPitch: 0 },
-      { yaw: 6.276, pitch: -0.070, label: 'Третий этаж 12', target: 'floor3_12',
-        returnYaw: 3.135, returnPitch: 0 }
-    ]
-  },
-  'floor3_12': {
-    name: 'Третий этаж 12',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 12.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.135, pitch: 0, label: 'Третий этаж 11', target: 'floor3_11',
-        returnYaw: 3.238, returnPitch: 0 },
-      { yaw: 6.201, pitch: -0.115, label: 'Шахматная гостиная', target: 'chess_living',
-        returnYaw: 2.094, returnPitch: 0 }
-    ]
-  },
-  'floor3_13': {
-    name: 'Третий этаж 13',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 13.jpg' }
-    ],
-    hotspots: [
-      { yaw: 6.326, pitch: -0.122, label: 'Шахматная гостиная', target: 'chess_living',
-        returnYaw: 4.741, returnPitch: -0.056 },
-      { yaw: 3.117, pitch: -0.093, label: 'Третий этаж 14', target: 'floor3_14',
-        returnYaw: 2.094, returnPitch: 0 }
-    ]
-  },
-  'floor3_14': {
-    name: 'Третий этаж 14',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 14(3).jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.117, pitch: -0.093, label: 'Третий этаж 13', target: 'floor3_13',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 4.743, pitch: -0.122, label: 'Кабинет Лекторий', target: 'lektoriy',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 6.302, pitch: -0.0785, label: 'Третий этаж 15', target: 'floor3_15',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'floor3_15': {
-    name: 'Третий этаж 15',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 15.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.197, pitch: -0.0349, label: 'Третий этаж 14', target: 'floor3_14',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 4.676, pitch: -0.115, label: 'Кабинет Хай-Тек цех', target: 'hightech',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 6.217, pitch: -0.0593, label: 'Третий этаж 16', target: 'floor3_16',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'floor3_16': {
-    name: 'Третий этаж 16',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 16.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.171, pitch: -0.0838, label: 'Третий этаж 15', target: 'floor3_15',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 6.176, pitch: -0.0803, label: 'Третий этаж 17', target: 'floor3_17',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'floor3_17': {
-    name: 'Третий этаж 17',
-    variants: [
-      { label: 'Обычная', image: '3 этаж 17.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.739, pitch: -0.0873, label: 'Кабинет IT-Квантум', target: 'kabinet_itkvantum',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 3.199, pitch: -0.0628, label: 'Третий этаж 16', target: 'floor3_16',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: -0.698, pitch: -0.103, label: 'Третий этаж 1', target: 'floor3_1',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 0.452, pitch: -0.122, label: 'Третий этаж', target: 'floor3',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'lektoriy': {
-    name: 'Кабинет Лекторий',
-    variants: [
-      { label: 'Обычная', image: 'Кабинет Лекторий.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.715, pitch: -0.0646, label: 'Третий этаж 14', target: 'floor3_14',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 5.956, pitch: -0.0105, label: 'Кабинет VR/AR', target: 'kabinet_vrar',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'kabinet_vrar': {
-    name: 'Кабинет VR/AR',
-    variants: [
-      { label: 'Обычная', image: 'Кабинет VRAR.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.215, pitch: -0.0454, label: 'Кабинет Лекторий', target: 'lektoriy',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 5.175, pitch: -0.0297, label: 'Третий этаж 14', target: 'floor3_14',
-        returnYaw: -2.461, returnPitch: -0.0750 }
-    ]
-  },
-  'hightech': {
-    name: 'Кабинет Хай-Тек цех',
-    variants: [
-      { label: 'Обычная', image: 'Кабинет Хай тек цех.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.580, pitch: -0.0244, label: 'Третий этаж 15', target: 'floor3_15',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 4.894, pitch: -0.0750, label: 'Кабинет Хай-Тек цех 2', target: 'hightech_2',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'hightech_2': {
-    name: 'Кабинет Хай-Тек цех 2',
-    variants: [
-      { label: 'Обычная', image: 'Кабинет хай тек цех 2.jpg' }
-    ],
-    hotspots: [
-      { yaw: -1.508, pitch: -0.0593, label: 'Кабинет Хай-Тек цех', target: 'hightech',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: -0.578, pitch: 0, label: 'Третий этаж 15', target: 'floor3_15',
-        returnYaw: 3.894, returnPitch: -0.0401 }
-    ]
-  },
-  'kabinet_itkvantum': {
-    name: 'Кабинет IT-Квантум',
-    variants: [
-      { label: 'Обычная', image: 'кабинет it квантум.jpg' }
-    ],
-    hotspots: [
-      { yaw: 1.728, pitch: -0.0716, label: 'Третий этаж 17', target: 'floor3_17',
-        returnYaw: 0, returnPitch: 0 },
-      { yaw: 3.578, pitch: -0.103, label: 'Кабинет IT-Квантум 2', target: 'kabinet_itkvantum_2',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'kabinet_itkvantum_2': {
-    name: 'Кабинет IT-Квантум 2',
-    variants: [
-      { label: 'Обычная', image: 'кабинет it квантум 2.jpg' }
-    ],
-    hotspots: [
-      { yaw: -4.409, pitch: -0.0489, label: 'Кабинет IT-Квантум', target: 'kabinet_itkvantum',
-        returnYaw: 0, returnPitch: 0 }
-    ]
-  },
-  'chess_living': {
-    name: 'Шахматная гостиная',
-    variants: [
-      { label: 'Обычная', image: 'шахматная гостиная.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.110, pitch: -0.091, label: 'Третий этаж 12', target: 'floor3_12',
-        returnYaw: 2.094, returnPitch: 0 },
-      { yaw: 4.741, pitch: -0.056, label: 'Третий этаж 13', target: 'floor3_13',
-        returnYaw: 2.094, returnPitch: 0 }
-    ]
-  },
-  'kabinet_304': {
-    name: 'Кабинет 304',
-    variants: [
-      { label: 'Обычная', image: 'Кабинет 304.jpg' }
-    ],
-    hotspots: [
-      { yaw: 3.027, pitch: -0.209, label: 'Третий этаж 9', target: 'floor3_9',
-        returnYaw: 1.388, returnPitch: 0 },
-      { yaw: 0.243, pitch: -0.269, label: 'Коллективная радиостанция', target: 'radio_station',
-        returnYaw: 3.142, returnPitch: 0 },
-      { yaw: 4.743, pitch: -0.257, label: 'Кабинет Энерджиквантум', target: 'energikvantum',
-        returnYaw: 3.142, returnPitch: 0 }
-    ]
-  },
-  'radio_station': {
-    name: 'Коллективная радиостанция',
-    variants: [
-      { label: 'Обычная', image: 'Коллективная радиостанция 4.jpg' }
-    ],
-    hotspots: [
-      { yaw: 0, pitch: 0, label: 'Кабинет 304', target: 'kabinet_304',
-        returnYaw: 3.385, returnPitch: 0 }
-    ]
-  },
-  'energikvantum': {
-    name: 'Кабинет Энерджиквантум',
-    variants: [
-      { label: 'Обычная', image: 'Энерджиквантум.jpg' }
-    ],
-    hotspots: [
-      { yaw: 4.737, pitch: -0.140, label: 'Кабинет 304', target: 'kabinet_304',
-        returnYaw: 1.602, returnPitch: 0 },
-      { yaw: 3.013, pitch: -0.070, label: 'Энерджиквантум 2', target: 'energikvantum_2',
-        returnYaw: 4.659, returnPitch: 0 }
-    ]
-  },
-  'energikvantum_2': {
-    name: 'Кабинет Энерджиквантум 2',
-    variants: [
-      { label: 'Обычная', image: 'Энерджиквантум 2.jpg' }
-    ],
-    hotspots: [
-      { yaw: 1.517, pitch: -0.080, label: 'Энерджиквантум', target: 'energikvantum',
-        returnYaw: 6.155, returnPitch: 0 }
-    ]
+    hotspots: []
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'security'] },
-  { label: 'Третий этаж', scenes: ['floor3', 'floor3_1', 'floor3_2', 'floor3_3', 'floor3_4', 'floor3_5', 'floor3_6', 'floor3_7', 'floor3_8', 'floor3_9', 'floor3_10', 'floor3_11', 'floor3_12', 'floor3_13', 'floor3_14', 'floor3_15', 'floor3_16', 'floor3_17'] },
-  { label: 'Кабинеты', scenes: ['industrial_design', 'industrial_design_2', 'robo', 'kabinet_304', 'radio_station', 'energikvantum', 'energikvantum_2', 'chess_living', 'lektoriy', 'kabinet_vrar', 'hightech', 'hightech_2', 'kabinet_itkvantum', 'kabinet_itkvantum_2'] }
+  { label: null, scenes: ['main_entrance'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -568,81 +153,15 @@ const translations = {
 
 const sceneNamesEn = {
   'main_entrance': 'Main Entrance',
-  'security': 'Security Office',
-  'floor3': 'Floor 3',
-  'floor3_1': 'Floor 3 \u2014 1',
-  'floor3_2': 'Floor 3 \u2014 2',
-  'floor3_3': 'Floor 3 \u2014 3',
-  'floor3_4': 'Floor 3 \u2014 4',
-  'floor3_5': 'Floor 3 \u2014 5',
-  'floor3_6': 'Floor 3 \u2014 6',
-  'floor3_7': 'Floor 3 \u2014 7',
-  'floor3_8': 'Floor 3 \u2014 8',
-  'floor3_9': 'Floor 3 \u2014 9',
-  'floor3_10': 'Floor 3 \u2014 10',
-  'floor3_11': 'Floor 3 \u2014 11',
-  'floor3_12': 'Floor 3 \u2014 12',
-  'floor3_13': 'Floor 3 \u2014 13',
-  'floor3_14': 'Floor 3 \u2014 14',
-  'floor3_15': 'Floor 3 \u2014 15',
-  'floor3_16': 'Floor 3 \u2014 16',
-  'floor3_17': 'Floor 3 \u2014 17',
-  'chess_living': 'Chess Living Room',
-  'industrial_design': 'Industrial Design Room',
-  'industrial_design_2': 'Industrial Design Room 2',
-  'robo': 'Roboquantum Room',
-  'kabinet_304': 'Room 304',
-  'lektoriy': 'Lecture Hall',
-  'kabinet_vrar': 'VR/AR Room',
-  'hightech': 'High-Tech Workshop',
-  'hightech_2': 'High-Tech Workshop 2',
-  'kabinet_itkvantum': 'IT-Quantum Room',
-  'kabinet_itkvantum_2': 'IT-Quantum Room 2',
-  'energikvantum': 'Energiquantom Room',
-  'energikvantum_2': 'Energiquantom Room 2',
 };
 
-const hotspotLabelEn = {
-  '\u041e\u0445\u0440\u0430\u043d\u0430': 'Security',
-  '\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0432\u0445\u043e\u0434': 'Main Entrance',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Floor 3',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 1': 'Floor 3 \u2014 1',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 2': 'Floor 3 \u2014 2',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 3': 'Floor 3 \u2014 3',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 4': 'Floor 3 \u2014 4',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 5': 'Floor 3 \u2014 5',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 6': 'Floor 3 \u2014 6',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 7': 'Floor 3 \u2014 7',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 8': 'Floor 3 \u2014 8',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 9': 'Floor 3 \u2014 9',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 10': 'Floor 3 \u2014 10',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 11': 'Floor 3 \u2014 11',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 12': 'Floor 3 \u2014 12',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 13': 'Floor 3 \u2014 13',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 14': 'Floor 3 \u2014 14',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u0438\u0437\u0430\u0439\u043d': 'Industrial Design Room',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u0438\u0437\u0430\u0439\u043d 2': 'Industrial Design Room 2',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0420\u043e\u0431\u043e\u043a\u0432\u0430\u043d\u0442\u0443\u043c': 'Roboquantum Room',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 304': 'Room 304',
-  '\u041a\u043e\u043b\u043b\u0435\u043a\u0442\u0438\u0432\u043d\u0430\u044f \u0440\u0430\u0434\u0438\u043e\u0441\u0442\u0430\u043d\u0446\u0438\u044f': 'Collective Radio Station',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u042d\u043d\u0435\u0440\u0434\u0436\u0438\u043a\u0432\u0430\u043d\u0442\u0443\u043c': 'Energiquantom Room',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u042d\u043d\u0435\u0440\u0434\u0436\u0438\u043a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'Energiquantom Room 2',
-  '\u041f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u0438\u0437\u0430\u0439\u043d': 'Industrial Design',
-  '\u042d\u043d\u0435\u0440\u0434\u0436\u0438\u043a\u0432\u0430\u043d\u0442\u0443\u043c': 'Energiquantom',
-  '\u042d\u043d\u0435\u0440\u0434\u0436\u0438\u043a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'Energiquantom 2',
-  '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 3 \u044d\u0442\u0430\u0436': 'Going up to Floor 3',
-  '\u0421\u043f\u0443\u0441\u043a\u0430\u0435\u043c\u0441\u044f \u043d\u0430 1 \u044d\u0442\u0430\u0436': 'Going down to Floor 1',
-  '\u0428\u0430\u0445\u043c\u0430\u0442\u043d\u0430\u044f \u0433\u043e\u0441\u0442\u0438\u043d\u0430\u044f': 'Chess Living Room',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041b\u0435\u043a\u0442\u043e\u0440\u0438\u0439': 'Lecture Hall',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 15': 'Floor 3 \u2014 15',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 16': 'Floor 3 \u2014 16',
-  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 17': 'Floor 3 \u2014 17',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445': 'High-Tech Workshop',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 VR/AR': 'VR/AR Room',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445 2': 'High-Tech Workshop 2',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u041a\u0432\u0430\u043d\u0442\u0443\u043c': 'IT-Quantum Room',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u041a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'IT-Quantum Room 2',
+const hotspotLabelEn = {};
+
+const variantLabelEn = {
+  '\u041e\u0431\u044b\u0447\u043d\u0430\u044f': 'Normal',
 };
+
+const sidebarGroupLabelEn = {};
 
 const variantLabelEn = {
   '\u041e\u0431\u044b\u0447\u043d\u0430\u044f': 'Normal',
@@ -812,37 +331,14 @@ scene.add(sphere);
 const euler = new THREE.Euler(0, 0, 0, 'YXZ');
 const hotspotVec = new THREE.Vector3(0, 0, -1);
 
-// Главный вход грузится сразу с замером скорости
+// Главный вход грузится сразу
 const mainFileUrl = encodeURI(scenes.main_entrance.variants[0].image);
-let mainTexPromise = fetch(mainFileUrl).then(async response => {
-  const reader = response.body.getReader();
-  const total = parseInt(response.headers.get('content-length') || 0);
-  let loaded = 0;
-  const chunks = [];
-  const startTime = performance.now();
-
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    chunks.push(value);
-    loaded += value.length;
-    updateSpeed(loaded, (performance.now() - startTime) / 1000);
-  }
-
-  const blob = new Blob(chunks);
-  const imgUrl = URL.createObjectURL(blob);
-  return new Promise((resolve, reject) => {
-    const loader = new THREE.TextureLoader();
-    loader.load(imgUrl, tex => {
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.wrapS = THREE.RepeatWrapping;
-      tex.needsUpdate = true;
-      imageCache[mainFileUrl] = tex;
-      URL.revokeObjectURL(imgUrl);
-      resolve(tex);
-    }, undefined, reject);
-  });
-}).then(tex => {
+const mainLoader = new THREE.TextureLoader();
+mainLoader.load(mainFileUrl, tex => {
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.needsUpdate = true;
+  imageCache[mainFileUrl] = tex;
   sphere.material.transparent = true;
   sphere.material.opacity = 0;
   setTexUniforms(sphere.material, tex);
@@ -887,10 +383,6 @@ function updateSpeed(loaded, elapsed) {
 function preloadAll() {
   const images = getAllImages();
   const total = images.length;
-  let loadedFiles = 0;
-  let totalBytes = 0;
-  let loadedBytes = 0;
-  let startTime = 0;
 
   if (total === 0) {
     loadingEl.classList.add('hidden');
@@ -898,80 +390,28 @@ function preloadAll() {
     return;
   }
 
-  // Узнаём размеры всех файлов перед загрузкой
-  Promise.all(images.map(img =>
-    fetch(encodeURI(img.file), { method: 'HEAD' })
-      .then(r => parseInt(r.headers.get('content-length') || 0))
-      .catch(() => 0)
-  )).then(sizes => {
-    startTime = performance.now();
-    totalBytes = sizes.reduce((a, b) => a + b, 0);
+  const mainFile = scenes.main_entrance.variants[0].image;
+  let loaded = 0;
 
-    // Главный вход уже загружен для фона — не качаем повторно
-    const mainFile = scenes.main_entrance.variants[0].image;
-
-    for (let i = 0; i < images.length; i++) {
-      const img = images[i];
-      if (img.file === mainFile) { loadedFiles++; continue; }
-      const fileSize = sizes[i];
-
-      const item = document.createElement('div');
-      item.className = 'preload-item' + (img.variant ? ' variant' : '');
-      const nameSpan = document.createElement('span');
-      nameSpan.className = 'name';
-      nameSpan.textContent = img.label + (img.variant ? ' (' + img.variant + ')' : '');
-      const progSpan = document.createElement('span');
-      progSpan.className = 'progress';
-      progSpan.textContent = '0B/' + humanSize(fileSize) + ' 0%';
-      item.appendChild(nameSpan);
-      item.appendChild(progSpan);
-      preloadList.appendChild(item);
-
-      const url = encodeURI(img.file);
-      const fileStartTime = performance.now();
-
-      (async () => {
-        try {
-          const response = await fetch(url);
-          const reader = response.body.getReader();
-          let recv = 0;
-
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            recv += value.length;
-            const filePct = fileSize ? Math.round((recv / fileSize) * 100) : 0;
-            progSpan.textContent = humanSize(recv) + '/' + humanSize(fileSize) + ' ' + filePct + '%';
-            loadedBytes += value.length;
-            loadingStatus.textContent = t('loading') + humanSize(loadedBytes) + '/' + humanSize(totalBytes) + ' ' + (totalBytes ? Math.round((loadedBytes / totalBytes) * 100) : 0) + '%';
-            updateSpeed(loadedBytes, (performance.now() - startTime) / 1000);
-          }
-
-          loadedFiles++;
-          progSpan.textContent = humanSize(fileSize) + '/' + humanSize(fileSize) + ' 100%';
-
-          if (loadedFiles === total) {
-            loadingStatus.textContent = t('loading') + humanSize(totalBytes) + '/' + humanSize(totalBytes) + ' 100%';
-            bgProgress.classList.add('hidden');
-            setTimeout(() => {
-              loadingEl.classList.add('hidden');
-              if (!viewerStarted) startViewer();
-            }, 400);
-          }
-        } catch (e) {
-          loadedFiles++;
-          progSpan.textContent = t('error');
-          if (loadedFiles === total) {
-            bgProgress.classList.add('hidden');
-            setTimeout(() => {
-              loadingEl.classList.add('hidden');
-              if (!viewerStarted) startViewer();
-            }, 400);
-          }
-        }
-      })();
+  for (const img of images) {
+    if (img.file === mainFile) {
+      loaded++;
+      if (loaded === total) {
+        loadingEl.classList.add('hidden');
+        if (!viewerStarted) startViewer();
+      }
+      continue;
     }
-  });
+
+    const loader = new THREE.TextureLoader();
+    loader.load(encodeURI(img.file), () => {
+      loaded++;
+      if (loaded === total) {
+        loadingEl.classList.add('hidden');
+        if (!viewerStarted) startViewer();
+      }
+    });
+  }
 }
 
 let viewerStarted = false;
