@@ -106,14 +106,24 @@ const scenes = {
       { label: 'Обычная', image: '3 этаж подъем.jpg' }
     ],
     hotspots: [
-      { yaw: 0.747, pitch: 0.185, label: 'Подъем 2 этаж', target: 'climb_2f',
-        descend: true, climbText: 'Подъем 2 этаж' }
+      { yaw: 1.941, pitch: -0.511, label: 'Подъем 2 этаж', target: 'climb_2f',
+        descend: true, climbText: 'Подъем 2 этаж' },
+      { yaw: 0.501, pitch: -0.251, label: '3 этаж', target: 'floor_3' }
+    ]
+  },
+  'floor_3': {
+    name: '3 этаж',
+    variants: [
+      { label: 'Обычная', image: '3 этаж.jpg' }
+    ],
+    hotspots: [
+      { yaw: 0.501, pitch: -0.251, label: 'Подъем', target: 'climb_3f' }
     ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -236,6 +246,7 @@ const sceneNamesEn = {
   'climb_1f': 'Climb Floor 1',
   'climb_2f': 'Climb Floor 2',
   'climb_3f': 'Climb Floor 3',
+  'floor_3': 'Floor 3',
 };
 
 const hotspotLabelEn = {
@@ -247,6 +258,7 @@ const hotspotLabelEn = {
   '\u041f\u043e\u0434\u044a\u0435\u043c 1 \u044d\u0442\u0430\u0436': 'Climb Floor 1',
   '\u041f\u043e\u0434\u044a\u0435\u043c 2 \u044d\u0442\u0430\u0436': 'Climb Floor 2',
   '\u041f\u043e\u0434\u044a\u0435\u043c 3 \u044d\u0442\u0430\u0436': 'Climb Floor 3',
+  '3 \u044d\u0442\u0430\u0436': 'Floor 3',
 };
 
 const variantLabelEn = {
