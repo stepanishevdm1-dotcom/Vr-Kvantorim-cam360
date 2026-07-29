@@ -32,12 +32,25 @@ const scenes = {
     variants: [
       { label: 'Обычная', image: 'Главный вход.jpg' }
     ],
-    hotspots: []
+    hotspots: [
+      { yaw: 1.465, pitch: -0.005, label: 'Крыльцо', target: 'porch',
+        returnYaw: 4.607, returnPitch: -0.005 }
+    ]
+  },
+  'porch': {
+    name: 'Крыльцо',
+    variants: [
+      { label: 'Обычная', image: 'Крыльцо.jpg' }
+    ],
+    hotspots: [
+      { yaw: 4.607, pitch: -0.005, label: 'Главный вход', target: 'main_entrance',
+        returnYaw: 1.465, returnPitch: -0.005 }
+    ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance'] }
+  { label: null, scenes: ['main_entrance', 'porch'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -153,9 +166,13 @@ const translations = {
 
 const sceneNamesEn = {
   'main_entrance': 'Main Entrance',
+  'porch': 'Porch',
 };
 
-const hotspotLabelEn = {};
+const hotspotLabelEn = {
+  '\u041a\u0440\u044b\u043b\u044c\u0446\u043e': 'Porch',
+  '\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0432\u0445\u043e\u0434': 'Main Entrance',
+};
 
 const variantLabelEn = {
   '\u041e\u0431\u044b\u0447\u043d\u0430\u044f': 'Normal',
