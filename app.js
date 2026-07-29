@@ -85,7 +85,7 @@ const scenes = {
     hotspots: [
       { yaw: 5.398, pitch: -0.284, label: 'Подъем', target: 'climb' },
       { yaw: 0.765, pitch: 0.216, label: 'Подъем 2 этаж', target: 'climb_2f',
-        stairs: true, climbText: 'Подъем 2 этаж' }
+        stairs: true, climbText: 'Поднимаемся на 2 этаж' }
     ]
   },
   'climb_2f': {
@@ -95,9 +95,9 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 1.126, pitch: -0.546, label: 'Подъем 1 этаж', target: 'climb_1f',
-        descend: true, climbText: 'Подъем 1 этаж' },
+        descend: true, climbText: 'Спускаемся на 1 этаж' },
       { yaw: 0.747, pitch: 0.185, label: 'Подъем 3 этаж', target: 'climb_3f',
-        stairs: true, climbText: 'Подъем 3 этаж' }
+        stairs: true, climbText: 'Поднимаемся на 3 этаж' }
     ]
   },
   'climb_3f': {
@@ -107,7 +107,7 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 1.941, pitch: -0.511, label: 'Подъем 2 этаж', target: 'climb_2f',
-        descend: true, climbText: 'Подъем 2 этаж' },
+        descend: true, climbText: 'Спускаемся на 2 этаж' },
       { yaw: 0.501, pitch: -0.251, label: '3 этаж', target: 'floor_3' }
     ]
   },
@@ -259,6 +259,10 @@ const hotspotLabelEn = {
   '\u041f\u043e\u0434\u044a\u0435\u043c 2 \u044d\u0442\u0430\u0436': 'Climb Floor 2',
   '\u041f\u043e\u0434\u044a\u0435\u043c 3 \u044d\u0442\u0430\u0436': 'Climb Floor 3',
   '3 \u044d\u0442\u0430\u0436': 'Floor 3',
+  '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 2 \u044d\u0442\u0430\u0436': 'Going up to Floor 2',
+  '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 3 \u044d\u0442\u0430\u0436': 'Going up to Floor 3',
+  '\u0421\u043f\u0443\u0441\u043a\u0430\u0435\u043c\u0441\u044f \u043d\u0430 1 \u044d\u0442\u0430\u0436': 'Going down to Floor 1',
+  '\u0421\u043f\u0443\u0441\u043a\u0430\u0435\u043c\u0441\u044f \u043d\u0430 2 \u044d\u0442\u0430\u0436': 'Going down to Floor 2',
 };
 
 const variantLabelEn = {
