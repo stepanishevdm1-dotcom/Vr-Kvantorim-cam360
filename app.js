@@ -217,12 +217,22 @@ const scenes = {
       { label: 'Третий этаж 9', image: '3 этаж 9.jpg' }
     ],
     hotspots: [
+      { yaw: 1.217, pitch: -0.05411, label: 'Третий этаж 8', target: 'floor_3_8' },
+      { yaw: 4.322, pitch: -0.1187, label: 'Третий этаж 10', target: 'floor_3_10' }
+    ]
+  },
+  'floor_3_10': {
+    name: 'Третий этаж 10',
+    variants: [
+      { label: 'Третий этаж 10', image: '3 этаж 10.jpg' }
+    ],
+    hotspots: [
     ]
   }
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3', 'floor_3_4', 'floor_3_5', 'floor_3_6', 'floor_3_7', 'floor_3_8', 'floor_3_9'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3', 'floor_3_4', 'floor_3_5', 'floor_3_6', 'floor_3_7', 'floor_3_8', 'floor_3_9', 'floor_3_10'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -356,6 +366,7 @@ const sceneNamesEn = {
   'floor_3_7': '3rd Floor Room 7',
   'floor_3_8': '3rd Floor Room 8',
   'floor_3_9': '3rd Floor Room 9',
+  'floor_3_10': '3rd Floor Room 10',
 };
 
 const hotspotLabelEn = {
@@ -377,6 +388,7 @@ const hotspotLabelEn = {
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 7': 'Floor 3 Room 7',
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 8': 'Floor 3 Room 8',
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 9': 'Floor 3 Room 9',
+  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 10': 'Floor 3 Room 10',
   '\u0420\u0430\u0437\u0432\u0438\u043b\u043a\u0430 \u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Fork Floor 3',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 2 \u044d\u0442\u0430\u0436': 'Going up to Floor 2',
   '\u041f\u043e\u0434\u043d\u0438\u043c\u0430\u0435\u043c\u0441\u044f \u043d\u0430 \u0442\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436': 'Going up to Floor 3',
@@ -404,6 +416,7 @@ const variantLabelEn = {
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 7': '3rd Floor Room 7',
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 8': '3rd Floor Room 8',
   '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 9': '3rd Floor Room 9',
+  '\u0422\u0440\u0435\u0442\u0438\u0439 \u044d\u0442\u0430\u0436 10': '3rd Floor Room 10',
 };
 
 const sidebarGroupLabelEn = {
