@@ -44,7 +44,7 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 4.451, pitch: -0.12, label: 'Главный вход', target: 'main_entrance' },
-      { yaw: 4.451, pitch: -0.12, label: 'Охрана', target: 'security' }
+      { yaw: 1.059, pitch: -0.169, label: 'Охрана', target: 'security' }
     ]
   },
   'security': {
@@ -53,7 +53,7 @@ const scenes = {
       { label: 'Обычная', image: 'Охрана.jpg' }
     ],
     hotspots: [
-      { yaw: 1.309, pitch: -0.12, label: 'Крыльцо', target: 'porch' }
+      { yaw: 1.059, pitch: -0.169, label: 'Крыльцо', target: 'porch' }
     ]
   }
 };
