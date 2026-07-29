@@ -344,15 +344,18 @@ const hotspotVec = new THREE.Vector3(0, 0, -1);
 
 // Главный вход грузится сразу
 const mainFileUrl = scenes.main_entrance.variants[0].image;
-const mainLoader = new THREE.TextureLoader();
-mainLoader.load(encodeURI(mainFileUrl), tex => {
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.wrapS = THREE.RepeatWrapping;
-  tex.needsUpdate = true;
-  imageCache[mainFileUrl] = tex;
-  sphere.material.transparent = true;
-  sphere.material.opacity = 0;
-  setTexUniforms(sphere.material, tex);
+const mainFileReady = new Promise(resolve => {
+  const loader = new THREE.TextureLoader();
+  loader.load(encodeURI(mainFileUrl), tex => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.needsUpdate = true;
+    imageCache[mainFileUrl] = tex;
+    sphere.material.transparent = true;
+    sphere.material.opacity = 0;
+    setTexUniforms(sphere.material, tex);
+    resolve();
+  });
 });
 
 /* ============================================================
@@ -391,7 +394,7 @@ function updateSpeed(loaded, elapsed) {
   loadingSpeed.textContent = (speed / (1024 * 1024)).toFixed(1) + ' MB/s';
 }
 
-function preloadAll() {
+async function preloadAll() {
   const images = getAllImages();
   const total = images.length;
 
@@ -418,24 +421,40 @@ function preloadAll() {
     loadingStatus.textContent = t('loading') + loadedCount + '/' + total;
   }
 
-  for (const img of images) {
-    if (imageCache[img.file]) {
-      loadedCount++;
-      onAllProgress();
-      if (loadedCount === total) {
-        loadingEl.classList.add('hidden');
-        if (!viewerStarted) startViewer();
-      }
-      continue;
+  function checkDone() {
+    if (loadedCount === total) {
+      loadingEl.classList.add('hidden');
+      if (!viewerStarted) startViewer();
+      return true;
     }
+    return false;
+  }
 
+  for (const img of images) {
     const itemEl = document.createElement('div');
     itemEl.className = 'preload-item';
     itemEl.innerHTML = '<span class="name">' + img.label + '</span><span class="progress">...</span>';
     if (img.variant) { itemEl.classList.add('variant'); itemEl.querySelector('.name').textContent = '  \u21B3 ' + img.variant; }
     preloadList.appendChild(itemEl);
 
+    if (imageCache[img.file]) {
+      onItemProgress(itemEl, 1, 1);
+      loadedCount++;
+      onAllProgress();
+      checkDone();
+      continue;
+    }
+
     const url = encodeURI(img.file);
+
+    if (img.file === mainFileUrl) {
+      await mainFileReady;
+      onItemProgress(itemEl, 1, 1);
+      loadedCount++;
+      onAllProgress();
+      checkDone();
+      continue;
+    }
 
     (function doLoad(itemEl, url) {
       fetch(url).then(r => {
@@ -459,10 +478,7 @@ function preloadAll() {
                 onItemProgress(itemEl, total, total);
                 loadedCount++;
                 onAllProgress();
-                if (loadedCount === total) {
-                  loadingEl.classList.add('hidden');
-                  if (!viewerStarted) startViewer();
-                }
+                checkDone();
               });
               return;
             }
@@ -485,10 +501,7 @@ function preloadAll() {
           onItemProgress(itemEl, 1, 1);
           loadedCount++;
           onAllProgress();
-          if (loadedCount === total) {
-            loadingEl.classList.add('hidden');
-            if (!viewerStarted) startViewer();
-          }
+          checkDone();
         });
       });
     })(itemEl, url);
