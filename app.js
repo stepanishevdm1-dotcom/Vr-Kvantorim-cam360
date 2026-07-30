@@ -427,6 +427,8 @@ const scenes = {
       { label: 'Третий этаж 29', image: '3 этаж 29.jpg' }
     ],
     hotspots: [
+      { yaw: 2.953, pitch: -0.1152, label: 'Развилка Третий этаж', target: 'fork_3' },
+      { yaw: 6.091, pitch: -0.06981, label: 'Третий этаж 28', target: 'floor_3_28' }
     ]
   }
 };
