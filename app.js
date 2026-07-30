@@ -440,7 +440,7 @@ const sidebarGroups = [
 
 const DEFAULT_SCENE = 'main_entrance';
 const SMOOTH = 0.18;
-const MIN_FOV = 20;
+const MIN_FOV = 10;
 const MAX_FOV = 120;
 const SPHERE_RADIUS = 500;
 const HOTSPOT_DISTANCE = 480;
@@ -1656,7 +1656,7 @@ function applyGlassStyle() {
 
 function applySmoothing() {
   if (!renderer) return;
-  renderer.domElement.style.filter = settings.smoothing ? 'blur(0.3px)' : 'none';
+  renderer.domElement.style.filter = settings.smoothing ? 'blur(1.2px)' : 'none';
 }
 
 function applyImageAdjustments() {
