@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
 
 /* ============================================================
    КОНФИГ — заменишь, когда скачаешь фото
@@ -761,10 +760,9 @@ const composer = new EffectComposer(renderer);
 const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
 
-const fxaaPass = new ShaderPass(FXAAShader);
-fxaaPass.enabled = false;
-fxaaPass.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
-composer.addPass(fxaaPass);
+const smaaPass = new SMAAPass(window.innerWidth, window.innerHeight);
+smaaPass.enabled = false;
+composer.addPass(smaaPass);
 
 const sphereGeo = new THREE.SphereGeometry(SPHERE_RADIUS, 64, 64);
 
@@ -1668,8 +1666,8 @@ function applyGlassStyle() {
 }
 
 function applySmoothing() {
-  if (!fxaaPass) return;
-  fxaaPass.enabled = settings.smoothing;
+  if (!smaaPass) return;
+  smaaPass.enabled = settings.smoothing;
 }
 
 function applyImageAdjustments() {
@@ -2317,7 +2315,7 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   composer.setSize(window.innerWidth, window.innerHeight);
-  fxaaPass.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
+  if (smaaPass) smaaPass.setSize(window.innerWidth, window.innerHeight);
 });
 
 /* ============================================================
