@@ -487,7 +487,8 @@ const SETTINGS_DEFAULTS = {
   fpsLimit: 60,
   glassBlur: 16,
   glassBorder: 4,
-  glassOpacity: 100
+  glassOpacity: 100,
+  smoothing: true
 };
 
 const translations = {
@@ -518,6 +519,7 @@ const translations = {
     glass_border: 'Толщина обводки',
     glass_opacity: 'Прозрачность обводки',
     darkness: 'Темность',
+    smoothing: 'Сглаживание',
   },
   en: {
     loading: 'Loading\u2026 ',
@@ -544,6 +546,7 @@ const translations = {
     glass_border: 'Border Thickness',
     glass_opacity: 'Border Opacity',
     darkness: 'Darkness',
+    smoothing: 'Smoothing',
     px: 'px',
     s: 's',
   }
@@ -1033,6 +1036,16 @@ function loadTexture(url) {
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.wrapS = THREE.RepeatWrapping;
       tex.repeat.x = -1;
+      if (settings.smoothing) {
+        const maxAniso = renderer ? renderer.capabilities.getMaxAnisotropy() : 1;
+        tex.minFilter = THREE.LinearMipmapLinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        tex.anisotropy = maxAniso;
+      } else {
+        tex.minFilter = THREE.LinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        tex.anisotropy = 1;
+      }
       tex.needsUpdate = true;
       imageCache[url] = tex;
       resolve(tex);
@@ -1078,6 +1091,7 @@ function startViewer() {
   loadingRotate = false;
   viewerStarted = true;
   setScene(DEFAULT_SCENE, 0);
+  applySmoothing();
 }
 
 /* ============================================================
@@ -1650,6 +1664,32 @@ function applyGlassStyle() {
   document.documentElement.style.setProperty('--glass-opacity', (opac / 100));
 }
 
+function applySmoothing() {
+  const maxAniso = renderer ? renderer.capabilities.getMaxAnisotropy() : 1;
+  const enable = settings.smoothing;
+  for (const key in imageCache) {
+    const tex = imageCache[key];
+    if (!tex || !tex.isTexture) continue;
+    if (enable) {
+      tex.minFilter = THREE.LinearMipmapLinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      tex.anisotropy = maxAniso;
+    } else {
+      tex.minFilter = THREE.LinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      tex.anisotropy = 1;
+    }
+    tex.needsUpdate = true;
+  }
+  if (sphere && sphere.material) {
+    if (sphere.material.uniforms && sphere.material.uniforms.tDiffuse) {
+      sphere.material.uniforms.tDiffuse.value.needsUpdate = true;
+    } else if (sphere.material.map) {
+      sphere.material.map.needsUpdate = true;
+    }
+  }
+}
+
 function applyImageAdjustments() {
   if (!adjustmentUniforms) return;
   adjustmentUniforms.brightness.value = settings.brightness;
@@ -2081,7 +2121,28 @@ function buildSettingsPanel() {
     });
   });
 
-  // 19. Language selector
+  // 20. Smoothing toggle
+  addGroup(t('smoothing'), (g) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'setting-toggle';
+    const l = document.createElement('span');
+    l.className = 'setting-toggle-label';
+    l.textContent = settings.smoothing ? t('on') : t('off');
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = settings.smoothing;
+    wrap.appendChild(l);
+    wrap.appendChild(input);
+    g.appendChild(wrap);
+    input.addEventListener('change', () => {
+      settings.smoothing = input.checked;
+      l.textContent = settings.smoothing ? t('on') : t('off');
+      saveSettings();
+      applySmoothing();
+    });
+  });
+
+  // 21. Language selector
   addGroup(t('language'), (g) => {
     const div = document.createElement('div');
     div.className = 'setting-style-options';
