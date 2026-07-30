@@ -1656,11 +1656,7 @@ function applyGlassStyle() {
 
 function applySmoothing() {
   if (!renderer) return;
-  if (settings.smoothing) {
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  } else {
-    renderer.setPixelRatio(1);
-  }
+  renderer.domElement.style.filter = settings.smoothing ? 'blur(0.3px)' : 'none';
 }
 
 function applyImageAdjustments() {
