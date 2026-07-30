@@ -1037,14 +1037,11 @@ function loadTexture(url) {
       tex.wrapS = THREE.RepeatWrapping;
       tex.repeat.x = -1;
       if (settings.smoothing) {
-        const maxAniso = renderer ? renderer.capabilities.getMaxAnisotropy() : 1;
-        tex.minFilter = THREE.LinearMipmapLinearFilter;
-        tex.magFilter = THREE.LinearFilter;
-        tex.anisotropy = maxAniso;
-      } else {
         tex.minFilter = THREE.LinearFilter;
         tex.magFilter = THREE.LinearFilter;
-        tex.anisotropy = 1;
+      } else {
+        tex.minFilter = THREE.NearestFilter;
+        tex.magFilter = THREE.NearestFilter;
       }
       tex.needsUpdate = true;
       imageCache[url] = tex;
@@ -1665,19 +1662,16 @@ function applyGlassStyle() {
 }
 
 function applySmoothing() {
-  const maxAniso = renderer ? renderer.capabilities.getMaxAnisotropy() : 1;
   const enable = settings.smoothing;
   for (const key in imageCache) {
     const tex = imageCache[key];
     if (!tex || !tex.isTexture) continue;
     if (enable) {
-      tex.minFilter = THREE.LinearMipmapLinearFilter;
-      tex.magFilter = THREE.LinearFilter;
-      tex.anisotropy = maxAniso;
-    } else {
       tex.minFilter = THREE.LinearFilter;
       tex.magFilter = THREE.LinearFilter;
-      tex.anisotropy = 1;
+    } else {
+      tex.minFilter = THREE.NearestFilter;
+      tex.magFilter = THREE.NearestFilter;
     }
     tex.needsUpdate = true;
   }
