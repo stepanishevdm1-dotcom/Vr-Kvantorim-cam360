@@ -1,7 +1,4 @@
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
 
 /* ============================================================
    КОНФИГ — заменишь, когда скачаешь фото
@@ -755,14 +752,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.prepend(renderer.domElement);
-
-const composer = new EffectComposer(renderer);
-const renderPass = new RenderPass(scene, camera);
-composer.addPass(renderPass);
-
-const smaaPass = new SMAAPass(window.innerWidth, window.innerHeight);
-smaaPass.enabled = false;
-composer.addPass(smaaPass);
 
 const sphereGeo = new THREE.SphereGeometry(SPHERE_RADIUS, 64, 64);
 
@@ -1666,8 +1655,14 @@ function applyGlassStyle() {
 }
 
 function applySmoothing() {
-  if (!smaaPass) return;
-  smaaPass.enabled = settings.smoothing;
+  if (!renderer) return;
+  if (settings.smoothing) {
+    renderer.setPixelRatio(1);
+    renderer.setSize(Math.round(window.innerWidth / 2), Math.round(window.innerHeight / 2), false);
+  } else {
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
 }
 
 function applyImageAdjustments() {
@@ -2313,9 +2308,7 @@ function showDebug(msg) {
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  composer.setSize(window.innerWidth, window.innerHeight);
-  if (smaaPass) smaaPass.setSize(window.innerWidth, window.innerHeight);
+  applySmoothing();
 });
 
 /* ============================================================
@@ -2346,7 +2339,7 @@ function animate(time) {
     lastFrameTime = time;
   }
 
-  composer.render();
+  renderer.render(scene, camera);
 
   fpsFrames++;
   if (time - fpsTime >= 1000) {
