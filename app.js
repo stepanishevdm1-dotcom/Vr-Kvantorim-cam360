@@ -1036,14 +1036,6 @@ function loadTexture(url) {
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.wrapS = THREE.RepeatWrapping;
       tex.repeat.x = -1;
-      tex.minFilter = THREE.LinearFilter;
-      tex.magFilter = THREE.LinearFilter;
-      if (settings.smoothing) {
-        const maxAniso = renderer ? renderer.capabilities.getMaxAnisotropy() : 1;
-        tex.anisotropy = maxAniso;
-      } else {
-        tex.anisotropy = 1;
-      }
       tex.needsUpdate = true;
       imageCache[url] = tex;
       resolve(tex);
@@ -1663,22 +1655,11 @@ function applyGlassStyle() {
 }
 
 function applySmoothing() {
-  const maxAniso = renderer ? renderer.capabilities.getMaxAnisotropy() : 1;
-  const enable = settings.smoothing;
-  for (const key in imageCache) {
-    const tex = imageCache[key];
-    if (!tex || !tex.isTexture) continue;
-    tex.minFilter = THREE.LinearFilter;
-    tex.magFilter = THREE.LinearFilter;
-    tex.anisotropy = enable ? maxAniso : 1;
-    tex.needsUpdate = true;
-  }
-  if (sphere && sphere.material) {
-    if (sphere.material.uniforms && sphere.material.uniforms.tDiffuse) {
-      sphere.material.uniforms.tDiffuse.value.needsUpdate = true;
-    } else if (sphere.material.map) {
-      sphere.material.map.needsUpdate = true;
-    }
+  if (!renderer) return;
+  if (settings.smoothing) {
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  } else {
+    renderer.setPixelRatio(1);
   }
 }
 
