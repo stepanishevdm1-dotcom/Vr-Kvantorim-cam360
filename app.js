@@ -128,7 +128,8 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 3.335, pitch: -0.082, label: 'Третий этаж', target: 'floor_3' },
-      { yaw: 0.176, pitch: -0.063, label: 'Третий этаж 1', target: 'floor_3_1' }
+      { yaw: 0.176, pitch: -0.063, label: 'Третий этаж 1', target: 'floor_3_1' },
+      { yaw: -1.372, pitch: -0.1117, label: 'Третий этаж 29', target: 'floor_3_29' }
     ]
   },
   'floor_3_1': {
