@@ -1064,11 +1064,11 @@ function createFilterMaterial(texture) {
           col = clamp(col, 0.0, 1.0);
         }
         col = mix(col, vec3(0.0), darkness);
-        float bottomZone = 1.0 - smoothstep(0.0, 0.30, vUv.y);
+        float bottomZone = 1.0 - smoothstep(0.0, 0.38, vUv.y);
         if (bottomZone > 0.0) {
           vec3 bcol = col;
-          for (int pass = 0; pass < 3; pass++) {
-            float radius = pass == 0 ? 6.0 : (pass == 1 ? 16.0 : 38.0);
+          for (int pass = 0; pass < 4; pass++) {
+            float radius = pass == 0 ? 20.0 : (pass == 1 ? 60.0 : (pass == 2 ? 140.0 : 320.0));
             vec2 ts = vec2(radius / texWidth, radius / texHeight);
             vec3 acc = vec3(0.0);
             acc += texture2D(tDiffuse, vUv + vec2(-ts.x, -ts.y)).rgb;
@@ -1082,6 +1082,7 @@ function createFilterMaterial(texture) {
             acc *= 0.125;
             bcol = mix(bcol, acc, 0.5);
           }
+          bottomZone = bottomZone * bottomZone * (3.0 - 2.0 * bottomZone);
           col = mix(col, bcol, bottomZone);
         }
         gl_FragColor = vec4(col, 1.0);
