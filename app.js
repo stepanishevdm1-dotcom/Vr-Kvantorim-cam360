@@ -828,7 +828,7 @@ function createFilterMaterial(texture) {
         }
         col = mix(col, vec3(0.0), darkness);
         if (smoothing > 0.5) {
-          vec2 ts = vec2(1.5 / texWidth, 1.5 / texHeight);
+          vec2 ts = vec2(2.0 / texWidth, 2.0 / texHeight);
           vec3 center = col;
           vec3 acc = vec3(0.0);
           float total = 0.0;
@@ -836,16 +836,19 @@ function createFilterMaterial(texture) {
             for (int x = -2; x <= 2; x++) {
               vec2 off = vec2(float(x), float(y)) * ts;
               vec3 s = texture2D(tDiffuse, vUv + off).rgb;
-              float spw = exp(-(float(x * x + y * y)) / 8.0);
+              float spw = exp(-(float(x * x + y * y)) / 6.0);
               float d = distance(s, center);
-              float cw = exp(-(d * d) / 0.06);
+              float cw = exp(-(d * d) / 0.05);
               float w = spw * cw;
               acc += s * w;
               total += w;
             }
           }
-          col = acc / max(total, 1e-5);
-          col = mix(center, col, 0.7);
+          vec3 smoothed = acc / max(total, 1e-5);
+          col = mix(center, smoothed, 0.9);
+          float yc = dot(center, vec3(0.299, 0.587, 0.114));
+          float yf = dot(col, vec3(0.299, 0.587, 0.114));
+          col *= (yc / max(yf, 1e-5));
         }
         gl_FragColor = vec4(col, 1.0);
       }
