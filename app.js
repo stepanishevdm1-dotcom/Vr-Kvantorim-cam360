@@ -2430,12 +2430,14 @@ function showSettings() {
   sidebarList.classList.add('hidden');
   settingsPanel.classList.remove('hidden');
   sidebarTitle.textContent = t('settings_title');
+  sidebar.classList.add('settings-mode');
 }
 
 function showSceneList() {
   sidebarList.classList.remove('hidden');
   settingsPanel.classList.add('hidden');
   sidebarTitle.textContent = t('rooms_title');
+  sidebar.classList.remove('settings-mode');
 }
 
 settingsBtn.addEventListener('click', (e) => {
