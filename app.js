@@ -1114,6 +1114,8 @@ const loadingStatus = document.getElementById('loading-status');
 const loadingSpeed = document.getElementById('loading-speed');
 const loadingEl = document.getElementById('loading');
 const loadingHint = document.getElementById('loading-hint');
+
+enableHoverScroll(preloadList);
 const bgLoadBtn = document.getElementById('bg-load-btn');
 loadingStatus.textContent = t('loading_initial');
 loadingHint.textContent = t('vpn_hint');
@@ -1827,10 +1829,10 @@ const overlay = document.getElementById('overlay');
 
 let hoverScrollTimer = null;
 
-function startHoverScroll(dir) {
+function startHoverScroll(list, dir) {
   if (hoverScrollTimer) return;
   hoverScrollTimer = setInterval(() => {
-    sidebarList.scrollTop += dir * 1.5;
+    list.scrollTop += dir * 1.5;
   }, 16);
 }
 
@@ -1841,20 +1843,23 @@ function stopHoverScroll() {
   }
 }
 
-sidebarList.addEventListener('mousemove', (e) => {
-  const rect = sidebarList.getBoundingClientRect();
-  const y = e.clientY - rect.top;
-  const zone = rect.height * 0.16;
-  if (y < zone) {
-    startHoverScroll(-1);
-  } else if (y > rect.height - zone) {
-    startHoverScroll(1);
-  } else {
-    stopHoverScroll();
-  }
-});
+function enableHoverScroll(list) {
+  list.addEventListener('mousemove', (e) => {
+    const rect = list.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+    const zone = rect.height * 0.16;
+    if (y < zone) {
+      startHoverScroll(list, -1);
+    } else if (y > rect.height - zone) {
+      startHoverScroll(list, 1);
+    } else {
+      stopHoverScroll();
+    }
+  });
+  list.addEventListener('mouseleave', stopHoverScroll);
+}
 
-sidebarList.addEventListener('mouseleave', stopHoverScroll);
+enableHoverScroll(sidebarList);
 
 function buildSidebar() {
   sidebarList.innerHTML = '';

@@ -565,6 +565,12 @@ canvas:active {
   text-align: left;
   font-size: 0.8rem;
   color: #ccc;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
 }
 
 .preload-item {
