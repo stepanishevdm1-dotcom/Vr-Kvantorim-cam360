@@ -519,7 +519,7 @@ const scenes = {
       { label: 'Кабинет Хай-Тек цех 2', image: 'хай тек 2.jpg' }
     ],
     hotspots: [
-      { yaw: 4.6416, pitch: -0.08, label: 'Кабинет Хай-Тек цех 1', target: 'cab_hitech1' }
+      { yaw: -3.0648, pitch: -0.0751, label: 'Кабинет Хай-Тек цех 1', target: 'cab_hitech1' }
     ]
   },
   'cab_it1': {
