@@ -1825,6 +1825,37 @@ const sidebar = document.getElementById('sidebar');
 const sidebarList = document.getElementById('sidebar-list');
 const overlay = document.getElementById('overlay');
 
+let hoverScrollTimer = null;
+
+function startHoverScroll(dir) {
+  if (hoverScrollTimer) return;
+  hoverScrollTimer = setInterval(() => {
+    sidebarList.scrollTop += dir * 1.5;
+  }, 16);
+}
+
+function stopHoverScroll() {
+  if (hoverScrollTimer) {
+    clearInterval(hoverScrollTimer);
+    hoverScrollTimer = null;
+  }
+}
+
+sidebarList.addEventListener('mousemove', (e) => {
+  const rect = sidebarList.getBoundingClientRect();
+  const y = e.clientY - rect.top;
+  const zone = rect.height * 0.16;
+  if (y < zone) {
+    startHoverScroll(-1);
+  } else if (y > rect.height - zone) {
+    startHoverScroll(1);
+  } else {
+    stopHoverScroll();
+  }
+});
+
+sidebarList.addEventListener('mouseleave', stopHoverScroll);
+
 function buildSidebar() {
   sidebarList.innerHTML = '';
   for (const group of sidebarGroups) {

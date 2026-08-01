@@ -915,8 +915,13 @@ canvas:active {
 
 #sidebar-list {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 6px 0;
+  max-height: 440px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
 }
 
 .sidebar-item {
