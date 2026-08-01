@@ -245,8 +245,7 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 1.585, pitch: -0.08553, label: 'Третий этаж 10', target: 'floor_3_10' },
-      { yaw: 4.676, pitch: -0.06109, label: 'Третий этаж 12', target: 'floor_3_12' },
-      { yaw: 4.3668, pitch: -0.1135, label: 'Кабинет Робоквантум 2', target: 'cab_robok2' }
+      { yaw: 4.676, pitch: -0.06109, label: 'Третий этаж 12', target: 'floor_3_12' }
     ]
   },
   'floor_3_12': {
@@ -256,7 +255,8 @@ const scenes = {
     ],
     hotspots: [
       { yaw: -0.3893, pitch: -0.1292, label: 'Третий этаж 13', target: 'floor_3_13' },
-      { yaw: -3.510, pitch: -0.01047, label: 'Третий этаж 11', target: 'floor_3_11' }
+      { yaw: -3.510, pitch: -0.01047, label: 'Третий этаж 11', target: 'floor_3_11' },
+      { yaw: -1.9234, pitch: -0.1501, label: 'Кабинет Робоквантум 2', target: 'cab_robok2' }
     ]
   },
   'floor_3_13': {
@@ -388,8 +388,7 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 4.051, pitch: -0.06109, label: 'Третий этаж 23', target: 'floor_3_23' },
-      { yaw: 0.8953, pitch: -0.06632, label: 'Третий этаж 25', target: 'floor_3_25' },
-      { yaw: 6.9482, pitch: -0.1169, label: 'Кабинет Хай-Тек цех 1', target: 'cab_hitech1' }
+      { yaw: 0.8953, pitch: -0.06632, label: 'Третий этаж 25', target: 'floor_3_25' }
     ]
   },
   'floor_3_25': {
@@ -399,7 +398,8 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 2.182, pitch: -0.001745, label: 'Третий этаж 26', target: 'floor_3_26' },
-      { yaw: -0.9425, pitch: -0.04189, label: 'Третий этаж 24', target: 'floor_3_24' }
+      { yaw: -0.9425, pitch: -0.04189, label: 'Третий этаж 24', target: 'floor_3_24' },
+      { yaw: 0.5899, pitch: -0.0716, label: 'Кабинет Хай-Тек цех 1', target: 'cab_hitech1' }
     ]
   },
   'floor_3_26': {
@@ -440,7 +440,7 @@ const scenes = {
     hotspots: [
       { yaw: 2.953, pitch: -0.1152, label: 'Развилка Третий этаж', target: 'fork_3' },
       { yaw: 6.091, pitch: -0.06981, label: 'Третий этаж 28', target: 'floor_3_28' },
-      { yaw: 5.0231, pitch: -0.1553, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
+      { yaw: 1.3142, pitch: -0.1047, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
     ]
   },
   'cab_prom1': {
@@ -459,7 +459,8 @@ const scenes = {
       { label: 'Кабинет Промышленный дизайн 2', image: 'пром диз 2.jpg' }
     ],
     hotspots: [
-      { yaw: 0.8186, pitch: -0.0489, label: 'Кабинет Промышленный дизайн 1', target: 'cab_prom1' }
+      { yaw: 4.0597, pitch: -0.0838, label: 'Кабинет Промышленный дизайн 1', target: 'cab_prom1' },
+      { yaw: 3.3510, pitch: -0.0035, label: 'Третий этаж 8', target: 'floor_3_8' }
     ]
   },
   'cab_robok1': {
@@ -478,7 +479,8 @@ const scenes = {
       { label: 'Кабинет Робоквантум 2', image: 'робоквантум 2.jpg' }
     ],
     hotspots: [
-      { yaw: 1.206, pitch: -0.1396, label: 'Третий этаж 12', target: 'floor_3_12' }
+      { yaw: 2.3475, pitch: -0.0803, label: 'Третий этаж 12', target: 'floor_3_12' },
+      { yaw: 3.7979, pitch: -0.0593, label: 'Аэроквантум', target: 'cab_aero' }
     ]
   },
   'cab_304': {
@@ -526,7 +528,7 @@ const scenes = {
       { label: 'Кабинет IT-квантум 1', image: 'it квантум.jpg' }
     ],
     hotspots: [
-      { yaw: 1.3265, pitch: -0.1257, label: 'Кабинет IT-квантум 2', target: 'cab_it2' },
+      { yaw: 3.7892, pitch: -0.0716, label: 'Кабинет IT-квантум 2', target: 'cab_it2' },
       { yaw: 1.8815, pitch: -0.1553, label: 'Третий этаж 29', target: 'floor_3_29' },
       { yaw: 1.4260, pitch: -0.0820, label: 'Третий этаж', target: 'floor_3' }
     ]
@@ -537,7 +539,7 @@ const scenes = {
       { label: 'Кабинет IT-квантум 2', image: 'it квантум 2.jpg' }
     ],
     hotspots: [
-      { yaw: 4.468, pitch: -0.1257, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
+      { yaw: 0.7313, pitch: -0.0803, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
     ]
   },
   'cab_radio': {
@@ -546,7 +548,7 @@ const scenes = {
       { label: 'Коллективная радиостанция', image: 'коллективная радиостанция.jpg' }
     ],
     hotspots: [
-      { yaw: 1.6182, pitch: -0.3054, label: 'Кабинет 304', target: 'cab_304' }
+      { yaw: 1.5551, pitch: -0.1152, label: 'Кабинет 304', target: 'cab_304' }
     ]
   },
   'cab_energy1': {
@@ -555,7 +557,9 @@ const scenes = {
       { label: 'Кабинет Энерджиквантум 1', image: 'энерджиквантум.jpg' }
     ],
     hotspots: [
-      { yaw: 6.1376, pitch: -0.1169, label: 'Кабинет 304', target: 'cab_304' }
+      { yaw: 3.1102, pitch: -0.1012, label: 'Кабинет 304', target: 'cab_304' },
+      { yaw: 1.2409, pitch: -0.0367, label: 'Кабинет Энерджиквантум 2', target: 'cab_energy2' },
+      { yaw: 3.2952, pitch: -0.0716, label: 'Третий этаж 14', target: 'floor_3_14' }
     ]
   },
   'cab_energy2': {
@@ -573,7 +577,8 @@ const scenes = {
       { label: 'Аэроквантум', image: 'аэроквантум.jpg' }
     ],
     hotspots: [
-      { yaw: 0.9495, pitch: -0.0716, label: 'Робоквантум 1', target: 'cab_robok1' }
+      { yaw: 6.9604, pitch: -0.0768, label: 'Робоквантум 1', target: 'cab_robok1' },
+      { yaw: 3.8066, pitch: -0.0262, label: 'Кабинет Робоквантум 2', target: 'cab_robok2' }
     ]
   }
 };
