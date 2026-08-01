@@ -476,7 +476,7 @@ const SETTINGS_DEFAULTS = {
   markerColor: '#ffffff',
   mouseSensitivity: 1,
   animations: true,
-  transitionSpeed: 2500,
+  transitionSpeed: 1700,
   language: 'ru',
   brightness: 0,
   darkness: 0,
@@ -727,6 +727,7 @@ function loadSettings() {
       for (const k in SETTINGS_DEFAULTS) {
         if (settings[k] === undefined) settings[k] = SETTINGS_DEFAULTS[k];
       }
+      if (settings.transitionSpeed === 2500) settings.transitionSpeed = 1700;
     } else {
       settings = { ...SETTINGS_DEFAULTS };
     }
@@ -769,6 +770,7 @@ function createFilterMaterial(texture) {
     contrast: { value: settings.contrast },
     sharpness: { value: settings.sharpness },
     clarity: { value: settings.clarity },
+    smoothing: { value: settings.smoothing ? 1 : 0 },
     texWidth: { value: tex.image ? tex.image.width : 2048 },
     texHeight: { value: tex.image ? tex.image.height : 1024 }
   };
@@ -790,6 +792,7 @@ function createFilterMaterial(texture) {
       uniform float contrast;
       uniform float sharpness;
       uniform float clarity;
+      uniform float smoothing;
       uniform float texWidth;
       uniform float texHeight;
       varying vec2 vUv;
@@ -824,6 +827,26 @@ function createFilterMaterial(texture) {
           col = clamp(col, 0.0, 1.0);
         }
         col = mix(col, vec3(0.0), darkness);
+        if (smoothing > 0.5) {
+          vec2 ts = vec2(1.5 / texWidth, 1.5 / texHeight);
+          vec3 center = col;
+          vec3 acc = vec3(0.0);
+          float total = 0.0;
+          for (int y = -2; y <= 2; y++) {
+            for (int x = -2; x <= 2; x++) {
+              vec2 off = vec2(float(x), float(y)) * ts;
+              vec3 s = texture2D(tDiffuse, vUv + off).rgb;
+              float spw = exp(-(float(x * x + y * y)) / 8.0);
+              float d = distance(s, center);
+              float cw = exp(-(d * d) / 0.06);
+              float w = spw * cw;
+              acc += s * w;
+              total += w;
+            }
+          }
+          col = acc / max(total, 1e-5);
+          col = mix(center, col, 0.7);
+        }
         gl_FragColor = vec4(col, 1.0);
       }
     `,
@@ -1655,13 +1678,9 @@ function applyGlassStyle() {
 }
 
 function applySmoothing() {
-  if (!renderer) return;
-  if (settings.smoothing) {
-    renderer.setPixelRatio(1);
-    renderer.setSize(Math.round(window.innerWidth / 2), Math.round(window.innerHeight / 2), false);
-  } else {
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  if (!sphereMat) return;
+  if (sphereMat.uniforms && sphereMat.uniforms.smoothing) {
+    sphereMat.uniforms.smoothing.value = settings.smoothing ? 1 : 0;
   }
 }
 
@@ -2308,7 +2327,7 @@ function showDebug(msg) {
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  applySmoothing();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
 /* ============================================================
