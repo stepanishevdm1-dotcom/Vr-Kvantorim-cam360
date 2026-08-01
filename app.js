@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 
 /* ============================================================
    КОНФИГ — заменишь, когда скачаешь фото
@@ -754,6 +757,57 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.prepend(renderer.domElement);
 
+const composer = new EffectComposer(renderer);
+const renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+
+const bilateralPass = new ShaderPass({
+  uniforms: {
+    tDiffuse: { value: null },
+    resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    strength: { value: settings.smoothing ? 1 : 0 }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform vec2 resolution;
+    uniform float strength;
+    varying vec2 vUv;
+    void main() {
+      vec2 px = 1.0 / resolution;
+      vec3 center = texture2D(tDiffuse, vUv).rgb;
+      float yc = dot(center, vec3(0.299, 0.587, 0.114));
+      vec3 acc = vec3(0.0);
+      float total = 0.0;
+      for (int y = -2; y <= 2; y++) {
+        for (int x = -2; x <= 2; x++) {
+          vec2 off = vec2(float(x), float(y)) * px * 1.5;
+          vec3 s = texture2D(tDiffuse, vUv + off).rgb;
+          float spw = exp(-(float(x * x + y * y)) / 6.0);
+          float d = distance(s, center);
+          float cw = exp(-(d * d) / 0.05);
+          float w = spw * cw;
+          acc += s * w;
+          total += w;
+        }
+      }
+      vec3 smoothed = acc / max(total, 1e-5);
+      vec3 col = mix(center, smoothed, strength);
+      float yf = dot(col, vec3(0.299, 0.587, 0.114));
+      col *= (yc / max(yf, 1e-5));
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `
+});
+bilateralPass.enabled = settings.smoothing;
+composer.addPass(bilateralPass);
+
 const sphereGeo = new THREE.SphereGeometry(SPHERE_RADIUS, 64, 64);
 
 let adjustmentUniforms = null;
@@ -770,7 +824,6 @@ function createFilterMaterial(texture) {
     contrast: { value: settings.contrast },
     sharpness: { value: settings.sharpness },
     clarity: { value: settings.clarity },
-    smoothing: { value: settings.smoothing ? 1 : 0 },
     texWidth: { value: tex.image ? tex.image.width : 2048 },
     texHeight: { value: tex.image ? tex.image.height : 1024 }
   };
@@ -792,7 +845,6 @@ function createFilterMaterial(texture) {
       uniform float contrast;
       uniform float sharpness;
       uniform float clarity;
-      uniform float smoothing;
       uniform float texWidth;
       uniform float texHeight;
       varying vec2 vUv;
@@ -827,29 +879,6 @@ function createFilterMaterial(texture) {
           col = clamp(col, 0.0, 1.0);
         }
         col = mix(col, vec3(0.0), darkness);
-        if (smoothing > 0.5) {
-          vec2 ts = vec2(2.0 / texWidth, 2.0 / texHeight);
-          vec3 center = col;
-          vec3 acc = vec3(0.0);
-          float total = 0.0;
-          for (int y = -2; y <= 2; y++) {
-            for (int x = -2; x <= 2; x++) {
-              vec2 off = vec2(float(x), float(y)) * ts;
-              vec3 s = texture2D(tDiffuse, vUv + off).rgb;
-              float spw = exp(-(float(x * x + y * y)) / 6.0);
-              float d = distance(s, center);
-              float cw = exp(-(d * d) / 0.05);
-              float w = spw * cw;
-              acc += s * w;
-              total += w;
-            }
-          }
-          vec3 smoothed = acc / max(total, 1e-5);
-          col = mix(center, smoothed, 0.9);
-          float yc = dot(center, vec3(0.299, 0.587, 0.114));
-          float yf = dot(col, vec3(0.299, 0.587, 0.114));
-          col *= (yc / max(yf, 1e-5));
-        }
         gl_FragColor = vec4(col, 1.0);
       }
     `,
@@ -1681,9 +1710,10 @@ function applyGlassStyle() {
 }
 
 function applySmoothing() {
-  if (!sphereMat) return;
-  if (sphereMat.uniforms && sphereMat.uniforms.smoothing) {
-    sphereMat.uniforms.smoothing.value = settings.smoothing ? 1 : 0;
+  if (!bilateralPass) return;
+  bilateralPass.enabled = settings.smoothing;
+  if (bilateralPass.uniforms && bilateralPass.uniforms.strength) {
+    bilateralPass.uniforms.strength.value = settings.smoothing ? 1 : 0;
   }
 }
 
@@ -2331,6 +2361,10 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  composer.setSize(window.innerWidth, window.innerHeight);
+  if (bilateralPass) {
+    bilateralPass.uniforms['resolution'].value.set(window.innerWidth, window.innerHeight);
+  }
 });
 
 /* ============================================================
@@ -2361,7 +2395,7 @@ function animate(time) {
     lastFrameTime = time;
   }
 
-  renderer.render(scene, camera);
+  composer.render();
 
   fpsFrames++;
   if (time - fpsTime >= 1000) {
