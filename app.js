@@ -1033,7 +1033,6 @@ function createFilterMaterial(texture) {
       uniform float clarity;
       uniform float texWidth;
       uniform float texHeight;
-      uniform float bottomColor;
       varying vec2 vUv;
       void main() {
         vec4 texel = texture2D(tDiffuse, vUv);
@@ -1066,7 +1065,7 @@ function createFilterMaterial(texture) {
           col = clamp(col, 0.0, 1.0);
         }
         col = mix(col, vec3(0.0), darkness);
-        float bottomZone = 1.0 - smoothstep(0.0, 0.38, vUv.y);
+        float bottomZone = 1.0 - smoothstep(0.0, 0.13, vUv.y);
         if (bottomZone > 0.0) {
           vec3 bcol = col;
           for (int pass = 0; pass < 4; pass++) {
@@ -1084,7 +1083,6 @@ function createFilterMaterial(texture) {
             acc *= 0.125;
             bcol = mix(bcol, acc, 0.5);
           }
-          bcol = mix(bcol, vec3(bottomColor), 0.85);
           bottomZone = clamp(bottomZone * 2.0, 0.0, 1.0);
           col = mix(col, bcol, bottomZone);
         }
