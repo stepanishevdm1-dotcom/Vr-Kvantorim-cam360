@@ -708,7 +708,7 @@ canvas:active {
   top: 64px;
   left: 12px;
   width: 250px;
-  max-height: calc(100% - 80px);
+  max-height: 460px;
   z-index: 300;
   background: rgba(255,255,255,0.03);
   backdrop-filter: blur(var(--glass-blur));
@@ -919,7 +919,7 @@ canvas:active {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 6px 0;
-  max-height: 440px;
+  max-height: 385px;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.2) transparent;
 }
@@ -1020,7 +1020,7 @@ canvas:active {
     width: 220px;
     left: 8px;
     top: 56px;
-    max-height: calc(100% - 68px);
+    max-height: 460px;
   }
   #scene-name {
     font-size: 0.88rem;
