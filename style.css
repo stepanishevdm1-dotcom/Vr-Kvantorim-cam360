@@ -735,6 +735,7 @@ canvas:active {
 
 #sidebar.settings-mode {
   max-height: 690px;
+  min-height: 690px;
 }
 
 #sidebar-header {
@@ -1031,6 +1032,10 @@ canvas:active {
     left: 8px;
     top: 56px;
     max-height: 460px;
+  }
+  #sidebar.settings-mode {
+    min-height: calc(100% - 68px);
+    max-height: calc(100% - 68px);
   }
   #scene-name {
     font-size: 0.88rem;
