@@ -529,8 +529,7 @@ const scenes = {
     ],
     hotspots: [
       { yaw: 3.7892, pitch: -0.0716, label: 'Кабинет IT-квантум 2', target: 'cab_it2' },
-      { yaw: 1.8815, pitch: -0.1553, label: 'Третий этаж 29', target: 'floor_3_29' },
-      { yaw: 1.4260, pitch: -0.0820, label: 'Третий этаж', target: 'floor_3' }
+      { yaw: 1.8815, pitch: -0.1553, label: 'Третий этаж 29', target: 'floor_3_29' }
     ]
   },
   'cab_it2': {
