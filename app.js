@@ -1010,7 +1010,8 @@ function createFilterMaterial(texture) {
     sharpness: { value: settings.sharpness },
     clarity: { value: settings.clarity },
     texWidth: { value: tex.image ? tex.image.width : 2048 },
-    texHeight: { value: tex.image ? tex.image.height : 1024 }
+    texHeight: { value: tex.image ? tex.image.height : 1024 },
+    bottomColor: { value: 1.0 }
   };
   adjustmentUniforms = uniforms;
   return new THREE.ShaderMaterial({
@@ -1032,6 +1033,7 @@ function createFilterMaterial(texture) {
       uniform float clarity;
       uniform float texWidth;
       uniform float texHeight;
+      uniform float bottomColor;
       varying vec2 vUv;
       void main() {
         vec4 texel = texture2D(tDiffuse, vUv);
@@ -1082,7 +1084,8 @@ function createFilterMaterial(texture) {
             acc *= 0.125;
             bcol = mix(bcol, acc, 0.5);
           }
-          bottomZone = bottomZone * bottomZone * (3.0 - 2.0 * bottomZone);
+          bcol = mix(bcol, vec3(bottomColor), 0.85);
+          bottomZone = clamp(bottomZone * 2.0, 0.0, 1.0);
           col = mix(col, bcol, bottomZone);
         }
         gl_FragColor = vec4(col, 1.0);
@@ -1326,6 +1329,7 @@ async function setScene(id, variantIdx, preserveRotation = false) {
     const tex = await loadTexture(imgUrl);
     if (sphere.material.uniforms) {
       sphere.material.uniforms.tDiffuse.value = tex;
+      sphere.material.uniforms.bottomColor.value = (id === 'main_entrance' || id === 'porch') ? 0.55 : 1.0;
     } else {
       sphere.material.map = tex;
       sphere.material.needsUpdate = true;
@@ -1675,6 +1679,7 @@ async function doCrossfadeTransition(targetId, returnYaw, returnPitch) {
     mat2.uniforms.contrast.value = settings.contrast;
     mat2.uniforms.sharpness.value = settings.sharpness;
     mat2.uniforms.clarity.value = settings.clarity;
+    mat2.uniforms.bottomColor.value = (targetId === 'main_entrance' || targetId === 'porch') ? 0.55 : 1.0;
     const sphere2 = new THREE.Mesh(sphereGeo, mat2);
     scene.add(sphere2);
 
@@ -1745,6 +1750,7 @@ async function navigateTo(id, variantIdx) {
     mat2.uniforms.contrast.value = settings.contrast;
     mat2.uniforms.sharpness.value = settings.sharpness;
     mat2.uniforms.clarity.value = settings.clarity;
+    mat2.uniforms.bottomColor.value = (id === 'main_entrance' || id === 'porch') ? 0.55 : 1.0;
     const sphere2 = new THREE.Mesh(sphereGeo, mat2);
     scene.add(sphere2);
 
