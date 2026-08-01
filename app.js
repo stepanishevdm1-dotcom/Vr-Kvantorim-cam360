@@ -509,8 +509,8 @@ const scenes = {
       { label: 'Кабинет Хай-Тек цех 1', image: 'хай тек 1.jpg' }
     ],
     hotspots: [
-      { yaw: 3.7579, pitch: -0.0960, label: 'Третий этаж 25', target: 'floor_3_25' },
-      { yaw: 1.5, pitch: -0.08, label: 'Кабинет Хай-Тек цех 2', target: 'cab_hitech2' }
+      { yaw: 6.2169, pitch: -0.0663, label: 'Третий этаж 25', target: 'floor_3_25' },
+      { yaw: 0.8360, pitch: -0.0611, label: 'Кабинет Хай-Тек цех 2', target: 'cab_hitech2' }
     ]
   },
   'cab_hitech2': {
@@ -556,9 +556,9 @@ const scenes = {
       { label: 'Кабинет Энерджиквантум 1', image: 'энерджиквантум.jpg' }
     ],
     hotspots: [
-      { yaw: 3.1102, pitch: -0.1012, label: 'Кабинет 304', target: 'cab_304' },
+      { yaw: 3.1102, pitch: -0.1012, label: 'Кабинет 304', target: 'cab_304', hitScale: 0.6 },
       { yaw: 1.2409, pitch: -0.0367, label: 'Кабинет Энерджиквантум 2', target: 'cab_energy2' },
-      { yaw: 3.2952, pitch: -0.0716, label: 'Третий этаж 14', target: 'floor_3_14' }
+      { yaw: 3.2952, pitch: -0.0716, label: 'Третий этаж 14', target: 'floor_3_14', hitScale: 0.6 }
     ]
   },
   'cab_energy2': {
@@ -567,7 +567,7 @@ const scenes = {
       { label: 'Кабинет Энерджиквантум 2', image: 'энерджиквантум 2.jpg' }
     ],
     hotspots: [
-      { yaw: 1.55, pitch: -0.08, label: 'Кабинет Энерджиквантум 1', target: 'cab_energy1' }
+      { yaw: 4.4314, pitch: -0.0908, label: 'Кабинет Энерджиквантум 1', target: 'cab_energy1' }
     ]
   },
   'cab_aero': {
@@ -1328,6 +1328,7 @@ function startViewer() {
    HOTSPOTS
    ============================================================ */
 let hotspotMeshes = [];
+let hotspotHitMeshes = [];
 
 function createHotspotSprite(label) {
   const canvas = document.createElement('canvas');
@@ -1438,7 +1439,9 @@ function createHotspotSprite(label) {
 
 function buildHotspots() {
   for (const m of hotspotMeshes) scene.remove(m);
+  for (const m of hotspotHitMeshes) scene.remove(m);
   hotspotMeshes = [];
+  hotspotHitMeshes = [];
 
   const s = scenes[currentSceneId];
   if (!s) return;
@@ -1451,6 +1454,15 @@ function buildHotspots() {
     sprite.userData = hs;
     scene.add(sprite);
     hotspotMeshes.push(sprite);
+
+    const hitScale = hs.hitScale || 1;
+    const hitMat = new THREE.SpriteMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthTest: false });
+    const hit = new THREE.Sprite(hitMat);
+    hit.scale.set(300 * hitScale, 75 * hitScale, 1);
+    hit.position.copy(pos);
+    hit.userData = hs;
+    scene.add(hit);
+    hotspotHitMeshes.push(hit);
   }
 }
 
@@ -1465,7 +1477,7 @@ function pickHotspot(clientX, clientY) {
   pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
   pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
   raycaster.setFromCamera(pointer, camera);
-  const intersects = raycaster.intersectObjects(hotspotMeshes);
+  const intersects = raycaster.intersectObjects(hotspotHitMeshes);
   if (intersects.length > 0) {
     const obj = intersects[0].object;
     if (obj.userData && obj.userData.target) return obj.userData;
