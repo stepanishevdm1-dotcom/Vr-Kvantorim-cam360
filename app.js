@@ -438,8 +438,8 @@ const scenes = {
 };
 
 const sidebarGroups = [
-  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f'] },
-  { label: 'Третий этаж', scenes: ['floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3', 'floor_3_4', 'floor_3_5', 'floor_3_6', 'floor_3_7', 'floor_3_8', 'floor_3_9', 'floor_3_10', 'floor_3_11', 'floor_3_12', 'floor_3_13', 'floor_3_14', 'floor_3_15', 'floor_3_16', 'floor_3_17', 'floor_3_18', 'floor_3_19', 'chess_lounge', 'floor_3_20', 'floor_3_21', 'floor_3_22', 'floor_3_23', 'floor_3_24', 'floor_3_25', 'floor_3_26', 'floor_3_27', 'floor_3_28', 'floor_3_29'] }
+  { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'chess_lounge'] },
+  { label: 'Третий этаж', scenes: ['floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3', 'floor_3_4', 'floor_3_5', 'floor_3_6', 'floor_3_7', 'floor_3_8', 'floor_3_9', 'floor_3_10', 'floor_3_11', 'floor_3_12', 'floor_3_13', 'floor_3_14', 'floor_3_15', 'floor_3_16', 'floor_3_17', 'floor_3_18', 'floor_3_19', 'floor_3_20', 'floor_3_21', 'floor_3_22', 'floor_3_23', 'floor_3_24', 'floor_3_25', 'floor_3_26', 'floor_3_27', 'floor_3_28', 'floor_3_29'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
