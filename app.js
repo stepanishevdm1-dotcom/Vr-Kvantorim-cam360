@@ -132,7 +132,8 @@ const scenes = {
     hotspots: [
       { yaw: 3.335, pitch: -0.082, label: 'Третий этаж', target: 'floor_3' },
       { yaw: 0.176, pitch: -0.063, label: 'Третий этаж 1', target: 'floor_3_1' },
-      { yaw: -1.372, pitch: -0.1117, label: 'Третий этаж 29', target: 'floor_3_29' }
+      { yaw: -1.372, pitch: -0.1117, label: 'Третий этаж 29', target: 'floor_3_29' },
+      { yaw: -0.8413, pitch: -0.1466, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
     ]
   },
   'floor_3_1': {
@@ -388,7 +389,7 @@ const scenes = {
     hotspots: [
       { yaw: 4.051, pitch: -0.06109, label: 'Третий этаж 23', target: 'floor_3_23' },
       { yaw: 0.8953, pitch: -0.06632, label: 'Третий этаж 25', target: 'floor_3_25' },
-      { yaw: 6.8995, pitch: -0.0960, label: 'Кабинет Хай-Тек цех', target: 'cab_hitech' }
+      { yaw: 6.8995, pitch: -0.0960, label: 'Кабинет Хай-Тек цех 1', target: 'cab_hitech1' }
     ]
   },
   'floor_3_25': {
@@ -439,17 +440,26 @@ const scenes = {
     hotspots: [
       { yaw: 2.953, pitch: -0.1152, label: 'Развилка Третий этаж', target: 'fork_3' },
       { yaw: 6.091, pitch: -0.06981, label: 'Третий этаж 28', target: 'floor_3_28' },
-      { yaw: 7.5852, pitch: -0.1257, label: 'Кабинет IT-квантум', target: 'cab_it' }
+      { yaw: 5.0231, pitch: -0.1553, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
     ]
   },
   'cab_prom1': {
     name: 'Кабинет Промышленный дизайн 1',
     variants: [
-      { label: 'Кабинет Промышленный дизайн 1', image: 'пром диз 1.jpg' },
-      { label: 'Ракурс 2', image: 'пром диз 2.jpg' }
+      { label: 'Кабинет Промышленный дизайн 1', image: 'пром диз 1.jpg' }
     ],
     hotspots: [
-      { yaw: 6.0528, pitch: -0.1239, label: 'Третий этаж 8', target: 'floor_3_8' }
+      { yaw: 6.0528, pitch: -0.1239, label: 'Третий этаж 8', target: 'floor_3_8' },
+      { yaw: 2.0, pitch: -0.1, label: 'Кабинет Промышленный дизайн 2', target: 'cab_prom2' }
+    ]
+  },
+  'cab_prom2': {
+    name: 'Кабинет Промышленный дизайн 2',
+    variants: [
+      { label: 'Кабинет Промышленный дизайн 2', image: 'пром диз 2.jpg' }
+    ],
+    hotspots: [
+      { yaw: 5.1416, pitch: -0.1, label: 'Кабинет Промышленный дизайн 1', target: 'cab_prom1' }
     ]
   },
   'cab_robok1': {
@@ -488,24 +498,42 @@ const scenes = {
       { yaw: 4.3389, pitch: -0.0349, label: 'Третий этаж 23', target: 'floor_3_23' }
     ]
   },
-  'cab_hitech': {
-    name: 'Кабинет Хай-Тек цех',
+  'cab_hitech1': {
+    name: 'Кабинет Хай-Тек цех 1',
     variants: [
-      { label: 'Кабинет Хай-Тек цех', image: 'хай тек 1.jpg' },
-      { label: 'Ракурс 2', image: 'хай тек 2.jpg' }
+      { label: 'Кабинет Хай-Тек цех 1', image: 'хай тек 1.jpg' }
     ],
     hotspots: [
-      { yaw: 3.7579, pitch: -0.0960, label: 'Третий этаж 25', target: 'floor_3_25' }
+      { yaw: 3.7579, pitch: -0.0960, label: 'Третий этаж 25', target: 'floor_3_25' },
+      { yaw: 1.5, pitch: -0.08, label: 'Кабинет Хай-Тек цех 2', target: 'cab_hitech2' }
     ]
   },
-  'cab_it': {
-    name: 'Кабинет IT-квантум',
+  'cab_hitech2': {
+    name: 'Кабинет Хай-Тек цех 2',
     variants: [
-      { label: 'Кабинет IT-квантум', image: 'it квантум.jpg' },
-      { label: 'Ракурс 2', image: 'it квантум 2.jpg' }
+      { label: 'Кабинет Хай-Тек цех 2', image: 'хай тек 2.jpg' }
     ],
     hotspots: [
-      { yaw: 4.4436, pitch: -0.1257, label: 'Третий этаж 29', target: 'floor_3_29' }
+      { yaw: 4.6416, pitch: -0.08, label: 'Кабинет Хай-Тек цех 1', target: 'cab_hitech1' }
+    ]
+  },
+  'cab_it1': {
+    name: 'Кабинет IT-квантум 1',
+    variants: [
+      { label: 'Кабинет IT-квантум 1', image: 'it квантум.jpg' }
+    ],
+    hotspots: [
+      { yaw: 3.8711, pitch: -0.0663, label: 'Кабинет IT-квантум 2', target: 'cab_it2' },
+      { yaw: 1.8815, pitch: -0.1553, label: 'Третий этаж 29', target: 'floor_3_29' }
+    ]
+  },
+  'cab_it2': {
+    name: 'Кабинет IT-квантум 2',
+    variants: [
+      { label: 'Кабинет IT-квантум 2', image: 'it квантум 2.jpg' }
+    ],
+    hotspots: [
+      { yaw: 0.7295, pitch: -0.0663, label: 'Кабинет IT-квантум 1', target: 'cab_it1' }
     ]
   }
 };
@@ -513,7 +541,7 @@ const scenes = {
 const sidebarGroups = [
   { label: null, scenes: ['main_entrance', 'porch', 'security', 'near_stairs', 'climb', 'climb_1f', 'climb_2f', 'climb_3f', 'chess_lounge'] },
   { label: 'Третий этаж', scenes: ['floor_3', 'fork_3', 'floor_3_1', 'floor_3_2', 'floor_3_3', 'floor_3_4', 'floor_3_5', 'floor_3_6', 'floor_3_7', 'floor_3_8', 'floor_3_9', 'floor_3_10', 'floor_3_11', 'floor_3_12', 'floor_3_13', 'floor_3_14', 'floor_3_15', 'floor_3_16', 'floor_3_17', 'floor_3_18', 'floor_3_19', 'floor_3_20', 'floor_3_21', 'floor_3_22', 'floor_3_23', 'floor_3_24', 'floor_3_25', 'floor_3_26', 'floor_3_27', 'floor_3_28', 'floor_3_29'] },
-  { label: 'Кабинеты', scenes: ['cab_prom1', 'cab_robok1', 'cab_robok2', 'cab_304', 'cab_lecture', 'cab_hitech', 'cab_it'] }
+  { label: 'Кабинеты', scenes: ['cab_prom1', 'cab_prom2', 'cab_robok1', 'cab_robok2', 'cab_304', 'cab_lecture', 'cab_hitech1', 'cab_hitech2', 'cab_it1', 'cab_it2'] }
 ];
 
 const DEFAULT_SCENE = 'main_entrance';
@@ -672,12 +700,15 @@ const sceneNamesEn = {
   'floor_3_28': '3rd Floor Room 28',
   'floor_3_29': '3rd Floor Room 29',
   'cab_prom1': 'Industrial Design Room 1',
+  'cab_prom2': 'Industrial Design Room 2',
   'cab_robok1': 'Roboquantum 1',
   'cab_robok2': 'Roboquantum Room 2',
   'cab_304': 'Room 304',
   'cab_lecture': 'Lecture Hall',
-  'cab_hitech': 'Hi-Tech Workshop',
-  'cab_it': 'IT Quantum Room',
+  'cab_hitech1': 'Hi-Tech Workshop 1',
+  'cab_hitech2': 'Hi-Tech Workshop 2',
+  'cab_it1': 'IT Quantum Room 1',
+  'cab_it2': 'IT Quantum Room 2',
 };
 
 const hotspotLabelEn = {
@@ -730,8 +761,11 @@ const hotspotLabelEn = {
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0420\u043e\u0431\u043e\u043a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'Roboquantum Room 2',
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 304': 'Room 304',
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041b\u0435\u043a\u0442\u043e\u0440\u0438\u0439': 'Lecture Hall',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445': 'Hi-Tech Workshop',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u043a\u0432\u0430\u043d\u0442\u0443\u043c': 'IT Quantum Room',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445 1': 'Hi-Tech Workshop 1',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445 2': 'Hi-Tech Workshop 2',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u043a\u0432\u0430\u043d\u0442\u0443\u043c 1': 'IT Quantum Room 1',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u043a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'IT Quantum Room 2',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u0438\u0437\u0430\u0439\u043d 2': 'Industrial Design Room 2',
 };
 
 const variantLabelEn = {
@@ -780,9 +814,11 @@ const variantLabelEn = {
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0420\u043e\u0431\u043e\u043a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'Roboquantum Room 2',
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 304': 'Room 304',
   '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041b\u0435\u043a\u0442\u043e\u0440\u0438\u0439': 'Lecture Hall',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445': 'Hi-Tech Workshop',
-  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u043a\u0432\u0430\u043d\u0442\u0443\u043c': 'IT Quantum Room',
-  '\u0420\u0430\u043a\u0443\u0440\u0441 2': 'View 2',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445 1': 'Hi-Tech Workshop 1',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u0425\u0430\u0439-\u0422\u0435\u043a \u0446\u0435\u0445 2': 'Hi-Tech Workshop 2',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u043a\u0432\u0430\u043d\u0442\u0443\u043c 1': 'IT Quantum Room 1',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 IT-\u043a\u0432\u0430\u043d\u0442\u0443\u043c 2': 'IT Quantum Room 2',
+  '\u041a\u0430\u0431\u0438\u043d\u0435\u0442 \u041f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u0438\u0437\u0430\u0439\u043d 2': 'Industrial Design Room 2',
 };
 
 const sidebarGroupLabelEn = {
