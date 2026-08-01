@@ -1064,9 +1064,9 @@ function createFilterMaterial(texture) {
           col = clamp(col, 0.0, 1.0);
         }
         col = mix(col, vec3(0.0), darkness);
-        float bottomZone = 1.0 - smoothstep(0.0, 0.14, vUv.y);
+        float bottomZone = 1.0 - smoothstep(0.0, 0.24, vUv.y);
         if (bottomZone > 0.0) {
-          vec2 ts = vec2(1.0 / texWidth, 1.0 / texHeight);
+          vec2 ts = vec2(2.5 / texWidth, 2.5 / texHeight);
           vec3 bcol = vec3(0.0);
           bcol += texture2D(tDiffuse, vUv + vec2(-ts.x, -ts.y)).rgb;
           bcol += texture2D(tDiffuse, vUv + vec2(0.0, -ts.y)).rgb;
@@ -1077,6 +1077,18 @@ function createFilterMaterial(texture) {
           bcol += texture2D(tDiffuse, vUv + vec2(0.0, ts.y)).rgb;
           bcol += texture2D(tDiffuse, vUv + vec2(ts.x, ts.y)).rgb;
           bcol *= 0.125;
+          vec2 ts2 = vec2(5.0 / texWidth, 5.0 / texHeight);
+          vec3 bcol2 = vec3(0.0);
+          bcol2 += texture2D(tDiffuse, vUv + vec2(-ts2.x, -ts2.y)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(0.0, -ts2.y)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(ts2.x, -ts2.y)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(-ts2.x, 0.0)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(ts2.x, 0.0)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(-ts2.x, ts2.y)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(0.0, ts2.y)).rgb;
+          bcol2 += texture2D(tDiffuse, vUv + vec2(ts2.x, ts2.y)).rgb;
+          bcol2 *= 0.125;
+          bcol = mix(bcol, bcol2, 0.5);
           col = mix(col, bcol, bottomZone);
         }
         gl_FragColor = vec4(col, 1.0);
